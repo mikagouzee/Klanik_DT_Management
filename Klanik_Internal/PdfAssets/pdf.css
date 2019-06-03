@@ -1,0 +1,71 @@
+﻿@font-face{
+    font-family:'NewJuneBold';
+    src:url('fonts/NewJune-Bold.otf');
+}
+
+
+.container{
+    display:flex;
+}
+
+.box-header {
+    /*display:inline-grid;
+    grid-template-columns:40% 60%;
+    grid-template-rows:50% 50%;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.Klanik-logo {
+    /*grid-column:1;
+    grid-row:1 / span 2;
+
+    background-color:yellow;*/
+    order: 1;
+    min-height: 150px;
+    background-color: yellow;
+    border: 1px solid black;
+}
+
+.Klanik-titleBar {
+    /*grid-column: 2;
+    grid-row: 2;*/
+    order: 3;
+    flex-grow: 4;
+    align-self: stretch;
+
+    font-size: 65px;
+    padding: 5px;
+    font-family: NewJuneBold;
+    background-color: #041d36;
+    color: white;
+}
+
+.box-infos {
+    /*grid-column:2;
+    grid-row:1;*/
+    order: 2;
+    flex-grow: 2;
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.box-name{
+    /* grid-column:1;    */
+
+    order:1;
+    vertical-align:center;
+
+    
+    border:1px solid black;
+}
+
+.box-summary{
+    /* grid-column:2; */
+    order:2;
+
+    
+    border:1px solid black;
+}

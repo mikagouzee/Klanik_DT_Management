@@ -1,0 +1,19 @@
+{
+  "name": "klanik_internal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "michel gouzee",
+  "license": "ISC",
+  "dependencies": {
+    "chrome-pdf": "^0.5.1",
+    "electron": "^4.1.3",
+    "jsreport-core": "^2.4.3",
+    "jsreport-electron-pdf": "^3.0.0",
+    "jsreport-jsrender": "^2.0.0",
+    "jsreport-phantom-pdf": "^2.2.0"
+  }
+}
