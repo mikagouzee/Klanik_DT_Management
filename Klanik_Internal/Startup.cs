@@ -103,7 +103,10 @@ namespace Klanik_Internal {
                 });
                 options.OperationFilter<SecurityRequirementsOperationFilter>();
             });
-
+            services.AddMvcCore(options =>
+            {
+                options.Filters.Add(typeof(ValidateModelFilter));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
