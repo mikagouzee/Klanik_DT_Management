@@ -16,11 +16,6 @@ namespace Klanik_Internal.Services
             _repo = repo;
         }
 
-        //public Education GetByName(string name)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public void Delete(Education toRemove)
         {
             _repo.Delete(toRemove);

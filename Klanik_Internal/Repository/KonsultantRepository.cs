@@ -102,139 +102,140 @@ namespace Klanik_Internal.Repository
                 KlanikContext _context = _provider.GetService<KlanikContext>();
                 foreach (var comp in toEdit.Competences)
                 {
-                    var ownedCompExists = _context.OwnedCompetences.Any(x => x.CompetenceId == comp.CompetenceId
-                        && x.KonsultantId == comp.KonsultantId);
-                    var compExists = _context.Competences.Any(x => x.Id == comp.CompetenceId);
-
-                    _context.Entry(comp).State =
-                        ownedCompExists ?
-                        EntityState.Modified :
-                        EntityState.Added;
-
-                    _context.Entry(comp.Competence).State =
-                        compExists ?
-                        EntityState.Modified :
-                        EntityState.Added;
-
+                    CreateOrUpdateCompetence(_context, comp);
                 }
 
                 foreach (var edu in toEdit.Educations)
                 {
-                    var perEduExists = _context.PersonalEducations.Any(x => x.EducationId == edu.EducationId
-                      && x.KonsultantId == edu.KonsultantId);
-
-                    var eduExists = _context.Educations.Any(x => x.Id == edu.Education.Id);
-
-                    _context.Entry(edu).State =
-                        perEduExists ?
-                        EntityState.Modified :
-                        EntityState.Added;
-
-                    _context.Entry(edu.Education).State =
-                        eduExists ?
-                        EntityState.Modified :
-                        EntityState.Added;
-
+                    CreateOrUpdateEducation(_context, edu);
                 }
 
                 foreach (var cert in toEdit.Certificates)
                 {
-                    var ownedCertExists = _context.OwnedCertificates.Any(x => x.CertificateId == cert.CertificateId
-                        && x.KonsultantId == cert.KonsultantId);
-
-                    var certExists = _context.Certificates.Any(x => x.Id == cert.Certificate.Id);
-
-                    _context.Entry(cert).State =
-                        ownedCertExists ?
-                        EntityState.Modified :
-                        EntityState.Added;
-
-                    _context.Entry(cert.Certificate).State =
-                        certExists ?
-                        EntityState.Modified :
-                        EntityState.Added;
-
+                    CreateOrUpdateCertificate(_context, cert);
                 }
 
                 foreach (var lang in toEdit.Languages)
                 {
-                    var knownLangExists = _context.KnownLanguages.Any(x => x.LanguageId == lang.LanguageId
-                          && x.KonsultantId == lang.KonsultantId);
-
-                    var langExists = _context.Languages.Any(x => x.Id == lang.Language.Id);
-
-                    _context.Entry(lang).State =
-                        knownLangExists ?
-                            EntityState.Modified :
-                            EntityState.Added;
-
-                    _context.Entry(lang.Language).State =
-                        langExists ?
-                        EntityState.Modified :
-                        EntityState.Added;
-
-
-
+                    CreateOrUpdateLanguage(_context, lang);
                 }
 
                 foreach (var exp in toEdit.ProfessionalExperiences)
                 {
-                    var profExpExists = _context.ProfessionalExperiences.Any(x => x.Id == exp.Id);
-
-                    _context.Entry(exp).State =
-                        profExpExists ?
-                        EntityState.Modified :
-                        EntityState.Added;
+                    CreateOrUpdateProfessionalExperience(_context, exp);
                 }
 
                 foreach (var refer in toEdit.ProfessionalReferences)
                 {
-                    var referExists = _context.ProfessionalReferences.Any(x => x.Id == refer.Id);
-
-                    _context.Entry(refer).State =
-                        referExists ?
-                        EntityState.Modified :
-                        EntityState.Added;
-
-                    if (!referExists)
-                    {
-                        var contact = new Contact
-                        {
-                            Mail = refer.Contacts.Mail,
-                            Phone = refer.Contacts.Phone,
-                            ProfessionalReference = refer
-                        };
-
-                        _context.Entry(contact).State = EntityState.Added;
-                    }
-
+                    CreateOrUpdateProfessionalReference(_context, refer);
                 }
-
 
                 _context.SaveChanges();
             }
         }
 
+        private static void CreateOrUpdateProfessionalReference(KlanikContext _context, ProfessionalReference refer)
+        {
+            var referExists = _context.ProfessionalReferences.Any(x => x.Id == refer.Id);
 
-        //public Konsultant GetByName(string name)
-        //{
-        //    using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
-        //    {
-        //        KlanikContext _context = _provider.GetService<KlanikContext>();
+            _context.Entry(refer).State =
+                referExists ?
+                EntityState.Modified :
+                EntityState.Added;
 
-        //        return _context.Konsultants
-        //            .Include(k => k.Languages)
-        //                .ThenInclude(l => l.Language)
-        //            .Include(k => k.Competences)
-        //                .ThenInclude(c => c.Competence)
-        //            .Include(k => k.Educations)
-        //                .ThenInclude(e => e.Education)
-        //            .Include(k => k.Certificates)
-        //                .ThenInclude(c => c.Certificate)
-        //            .Include(k => k.ProfessionalExperiences)
-        //            .Include(k => k.ProfessionalReferences)
-        //            .FirstOrDefault(x => x.Name == name);
-        //    }
-        //}
+            if (!referExists)
+            {
+                var contact = new Contact
+                {
+                    Mail = refer.Contacts.Mail,
+                    Phone = refer.Contacts.Phone,
+                    ProfessionalReference = refer
+                };
+
+                _context.Entry(contact).State = EntityState.Added;
+            }
+        }
+
+        private static void CreateOrUpdateProfessionalExperience(KlanikContext _context, ProfessionalExperience exp)
+        {
+            var profExpExists = _context.ProfessionalExperiences.Any(x => x.Id == exp.Id);
+
+            _context.Entry(exp).State =
+                profExpExists ?
+                EntityState.Modified :
+                EntityState.Added;
+        }
+
+        private static void CreateOrUpdateLanguage(KlanikContext _context, KnownLanguage lang)
+        {
+            var knownLangExists = _context.KnownLanguages.Any(x => x.LanguageId == lang.LanguageId
+                                      && x.KonsultantId == lang.KonsultantId);
+
+            var langExists = _context.Languages.Any(x => x.Id == lang.Language.Id);
+
+            _context.Entry(lang).State =
+                knownLangExists ?
+                    EntityState.Modified :
+                    EntityState.Added;
+
+            _context.Entry(lang.Language).State =
+                langExists ?
+                EntityState.Modified :
+                EntityState.Added;
+        }
+
+        private static void CreateOrUpdateCertificate(KlanikContext _context, OwnedCertificate cert)
+        {
+            var ownedCertExists = _context.OwnedCertificates.Any(x => x.CertificateId == cert.CertificateId
+                && x.KonsultantId == cert.KonsultantId);
+
+            var certExists = _context.Certificates.Any(x => x.Id == cert.Certificate.Id);
+
+            _context.Entry(cert).State =
+                ownedCertExists ?
+                EntityState.Modified :
+                EntityState.Added;
+
+            _context.Entry(cert.Certificate).State =
+                certExists ?
+                EntityState.Modified :
+                EntityState.Added;
+        }
+
+        private static void CreateOrUpdateEducation(KlanikContext _context, PersonalEducation edu)
+        {
+            var perEduExists = _context.PersonalEducations.Any(x => x.EducationId == edu.EducationId
+                                  && x.KonsultantId == edu.KonsultantId);
+
+            var eduExists = _context.Educations.Any(x => x.Id == edu.Education.Id);
+
+            _context.Entry(edu).State =
+                perEduExists ?
+                EntityState.Modified :
+                EntityState.Added;
+
+            _context.Entry(edu.Education).State =
+                eduExists ?
+                EntityState.Modified :
+                EntityState.Added;
+        }
+
+        private static void CreateOrUpdateCompetence(KlanikContext _context, OwnedCompetences comp)
+        {
+            var ownedCompExists = _context.OwnedCompetences.Any(x => x.CompetenceId == comp.CompetenceId
+                                    && x.KonsultantId == comp.KonsultantId);
+            var compExists = _context.Competences.Any(x => x.Id == comp.CompetenceId);
+
+            _context.Entry(comp).State =
+                ownedCompExists ?
+                EntityState.Modified :
+                EntityState.Added;
+
+            _context.Entry(comp.Competence).State =
+                compExists ?
+                EntityState.Modified :
+                EntityState.Added;
+        }
+
     }
 }

@@ -1,12 +1,11 @@
 ﻿using Klanik_Internal.Models;
+using Klanik_Internal.Models.ConfigValues;
 using Klanik_Internal.Services;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Klanik_Internal.Tools
 {
@@ -14,17 +13,20 @@ namespace Klanik_Internal.Tools
     {
         private readonly IService<Konsultant> _service;
         private readonly IMapper _mapper;
-        public TemplateGenerator(IService<Konsultant> service, IMapper mapper)
+        private PdfConfig _options { get; set; }
+
+        public TemplateGenerator(IService<Konsultant> service, IMapper mapper, IOptions<PdfConfig> options)
         {
             _service = service;
             _mapper = mapper;
+            _options = options.Value;
         }
 
         public string GetCvTemplate(Guid id)
         {
             var konsultant = _mapper.ToPdfModel( _service.GetById(id));
             //todo : replace this by a config value;
-            var assetsFolder = "file://C:/Users/Mika/source/Github_repos/Klanik_DT/Klanik_Internal/Klanik_Internal/PdfAssets";
+            var assetsFolder = _options.AssetsFolder;
 
             List<OwnedCompetences> firstHalfSkill = new List<OwnedCompetences>();
 
@@ -45,11 +47,6 @@ namespace Klanik_Internal.Tools
 
                 maincompetence = konsultant.Competences.OrderByDescending(x => x.Rating).FirstOrDefault().Competence.Name;
             }
-
-
-
-
-
 
             var sb = new StringBuilder();
 
@@ -517,7 +514,7 @@ namespace Klanik_Internal.Tools
 
                                 foreach (var accomp in prof.Accomplishments.Where(a => a.IsRelevant))
                 {
-                    sb.Append($@"<li>--{{accomp.title}} : {{accomp.summary}}</li>");
+                    sb.Append($@"<li>--{accomp.Title} : {accomp.Summary}</li>");
                 }
                 sb.Append($@"
                                   </ul>
@@ -525,7 +522,7 @@ namespace Klanik_Internal.Tools
                                   <ul>");
                                 foreach (var tech in prof.TechnicalEnvironments.Where(t => t.IsRelevant))
                 {
-                    sb.Append($@"<li>--{{tech.name}} {{tech.option}}</li>");
+                    sb.Append($@"<li>--{tech.Name} {tech.Option}</li>");
                 }
                 sb.Append($@"
                                   </ul>

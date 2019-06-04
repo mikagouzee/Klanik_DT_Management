@@ -26,11 +26,6 @@ namespace Klanik_Internal.Services
             _repo.Delete(toRemove);
         }
 
-        //public Contact GetByName(string name)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
 
         #region unnecessary
         public void Create(Contact toCreate)

@@ -21,11 +21,6 @@ namespace Klanik_Internal.Services
             _repo.Delete(toRemove);
         }
 
-        //public TechnicalEnvironment GetByName(string name)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public TechnicalEnvironment GetById(Guid id)
         {
             return _repo.GetById(id);

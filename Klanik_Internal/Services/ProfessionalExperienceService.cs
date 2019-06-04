@@ -16,11 +16,6 @@ namespace Klanik_Internal.Services
             _repo = repo;
         }
 
-        //public ProfessionalExperience GetByName(string name)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public ProfessionalExperience GetById(Guid id)
         {
             return _repo.GetById(id);
