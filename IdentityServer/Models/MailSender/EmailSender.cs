@@ -28,7 +28,7 @@ namespace IdentityServer.Models.MailSender
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("Confirmation@klanik.com", "AutoMail"),
+                From = new EmailAddress(Options.ConfirmationMailSender, Options.MailsenderDisplayName),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message

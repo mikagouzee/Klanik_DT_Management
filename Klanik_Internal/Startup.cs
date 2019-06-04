@@ -1,5 +1,3 @@
-﻿using System;
-
 using Klanik_Internal.Extensions;
 using Klanik_Internal.LogMachines;
 using Klanik_Internal.Models;
@@ -15,11 +13,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Logging;
+using Swashbuckle.AspNetCore.Filters;
+//Swagger
+using Swashbuckle.AspNetCore.Swagger;
+using System;
 
-namespace Klanik_Internal
-{
-    public class Startup
-    {
+
+namespace Klanik_Internal {
+    public class Startup {
 
         private IHostingEnvironment _hostingEnvironment;
         private ILogMachine _logMachine;
@@ -52,7 +54,7 @@ namespace Klanik_Internal
                 .EnableSensitiveDataLogging(true)
                 );
 
-            
+
 
             services.AddScoped<IServiceProvider, ServiceProvider>();
 
@@ -62,7 +64,6 @@ namespace Klanik_Internal
             services.AddScoped<IRepository<Konsultant>, KonsultantRepository>();
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
             services.AddScoped<IService<Certificate>, CertificateService>();
             services.AddScoped<IService<Language>, LanguageService>();
             services.AddScoped<IService<Competence>, CompetenceService>();
@@ -71,7 +72,7 @@ namespace Klanik_Internal
             services.AddScoped<IService<ProfessionalExperience>, ProfessionalExperienceService>();
             services.AddScoped<IService<ProfessionalReference>, ProfessionalReferenceService>();
             services.AddScoped<IService<Accomplishment>, AccomplishmentService>();
-            services.AddScoped<IService<Contact>, ContactService>();
+            services.AddScoped<IService<Models.Contact>, ContactService>();
 
             services.AddAuthentication(o =>
             {
@@ -80,7 +81,7 @@ namespace Klanik_Internal
             })
             .AddJwtBearer(o =>
             {
-                o.Authority = "https://localhost:44363";
+                o.Authority = "http://localhost:54433";
                 o.Audience = "api1";
                 o.RequireHttpsMetadata = false;
             });
@@ -88,6 +89,21 @@ namespace Klanik_Internal
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddTransient<IGenerator, TemplateGenerator>();
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Info { Title = "Klanik API - Swagger ", Version = "v1" });
+                // Handle OAuth
+                options.AddSecurityDefinition("oauth2", new ApiKeyScheme
+                {
+                    Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+                    In = "header",
+                    Name = "Authorization",
+                    Type = "apiKey"
+                });
+                options.OperationFilter<SecurityRequirementsOperationFilter>();
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,7 +118,7 @@ namespace Klanik_Internal
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            IdentityModelEventSource.ShowPII = true; //Add this line
             //log request/response headers
             app.Use(async (context, next) =>
             {
@@ -133,9 +149,17 @@ namespace Klanik_Internal
 
             app.UseStaticFiles();
 
+
             app.UseAuthentication();
 
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Klanik API");
+            });
         }
     }
+
 }
