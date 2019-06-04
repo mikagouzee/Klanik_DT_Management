@@ -1,14 +1,9 @@
 ﻿using IdentityServer4;
 using IdentityServer4.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace IdentityServer
-{
-    public class Config
-    {
+namespace IdentityServer {
+    public class Config {
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {
             return new List<IdentityResource>
@@ -63,11 +58,6 @@ namespace IdentityServer
                     }
                 },
 
-                //new Client
-                //{
-                //    ClientId = "consoleappclient",
-                //    AllowedGrantTypes = GrantType.ClientCredentials,
-                //}
             };
         }
     }
