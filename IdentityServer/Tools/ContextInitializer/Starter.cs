@@ -1,15 +1,10 @@
 ﻿using IdentityServer.Models;
-using IdentityServer.Tools.LogMachine;
 using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace IdentityServer.Tools.ContextInitializer
-{
-    public class Starter : IStarter
-    {
+namespace IdentityServer.Tools.ContextInitializer {
+    public class Starter : IStarter {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
@@ -18,7 +13,7 @@ namespace IdentityServer.Tools.ContextInitializer
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            
+
         }
 
         public void Seed()
@@ -33,9 +28,9 @@ namespace IdentityServer.Tools.ContextInitializer
 
                 }).Wait();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -77,14 +72,14 @@ namespace IdentityServer.Tools.ContextInitializer
                     FirstName = "Super",
                     LastName = "User",
                     Email = "mgouzee@klanik.com",
-                    EmailConfirmed = true                    
+                    EmailConfirmed = true
                 },
 
             };
 
             foreach (var user in users)
             {
-                if(await _userManager.FindByNameAsync(user.UserName) == null)
+                if (await _userManager.FindByNameAsync(user.UserName) == null)
                 {
                     await _userManager.CreateAsync(user, "ResetTh!s1");
 
@@ -101,7 +96,7 @@ namespace IdentityServer.Tools.ContextInitializer
         {
             var seb = await _userManager.FindByNameAsync("Sebastien_Verhaegen");
 
-            if(seb != null)
+            if (seb != null)
             {
                 var admin = await _roleManager.FindByNameAsync("Admin");
 
@@ -129,8 +124,7 @@ namespace IdentityServer.Tools.ContextInitializer
 
     }
 
-    public interface IStarter
-    {
+    public interface IStarter {
         void Seed();
     }
 
