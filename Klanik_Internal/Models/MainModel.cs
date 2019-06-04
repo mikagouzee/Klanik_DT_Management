@@ -41,22 +41,19 @@ namespace Klanik_Internal.Models
     public class Competence : KlanikEntity
     {
         public string Name { get; set; }
-        //public Rating Rating { get; set; }
-        //public virtual List<OwnedCompetences> OwnedCompetences { get; set; }
+
     }
 
     public class Education : KlanikEntity
     {
         public string Name { get; set; }
 
-        //public virtual List<PersonalEducation> Educations { get; set; }
     }
 
     public class Certificate : KlanikEntity
     {
         public string Name { get; set; }
 
-        //public virtual List<OwnedCertificate> Certificates { get; set; }
     }
 
     public class ProfessionalExperience : KlanikEntity
@@ -80,7 +77,6 @@ namespace Klanik_Internal.Models
 
         public ProfessionalExperience(ProfessionalExperienceViewModel exper, Guid konsultantId)
         {
-            //Id = Guid.Parse(exper.Id);
             Position = exper.Position;
             Summary = exper.Summary;
             Customer = exper.Customer;
@@ -133,8 +129,6 @@ namespace Klanik_Internal.Models
     public class Language : KlanikEntity
     {
         public string Name { get; set; }
-
-        //public virtual List<KnownLanguage> KnownLanguages { get; set; }
     }
 
     public enum Rating

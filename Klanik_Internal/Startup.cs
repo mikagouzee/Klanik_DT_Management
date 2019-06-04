@@ -1,29 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 using Klanik_Internal.Extensions;
 using Klanik_Internal.LogMachines;
 using Klanik_Internal.Models;
+using Klanik_Internal.Models.ConfigValues;
 using Klanik_Internal.Repository;
 using Klanik_Internal.Services;
 using Klanik_Internal.Tools;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Klanik_Internal
 {
@@ -37,7 +28,7 @@ namespace Klanik_Internal
         {
             _hostingEnvironment = env;
             Configuration = configuration;
-            _logMachine = new LogMachine(env.ContentRootFileProvider);
+            _logMachine = new LogMachine();
         }
 
         public IConfiguration Configuration { get; }
@@ -47,6 +38,9 @@ namespace Klanik_Internal
         {
             var physicalProvider = _hostingEnvironment.ContentRootFileProvider;
             services.AddSingleton(physicalProvider);
+
+            services.Configure<PdfConfig>(Configuration.GetSection("PdfConfig"));
+            services.Configure<CORS>(Configuration.GetSection("Cors"));
 
             services.ConfigureCors();
 
@@ -58,6 +52,8 @@ namespace Klanik_Internal
                 .EnableSensitiveDataLogging(true)
                 );
 
+            
+
             services.AddScoped<IServiceProvider, ServiceProvider>();
 
             services.AddScoped<IMapper, Mapper>();
@@ -65,15 +61,6 @@ namespace Klanik_Internal
 
             services.AddScoped<IRepository<Konsultant>, KonsultantRepository>();
 
-            //services.AddScoped<IRepository<Certificate>, CertificateRepository>();
-            //services.AddScoped<IRepository<Language>, LanguageRepository>();
-            //services.AddScoped<IRepository<Competence>, CompetenceRepository>();
-            //services.AddScoped<IRepository<TechnicalEnvironment>, TechnicalEnvironmentRepository >();
-            //services.AddScoped<IRepository<Education>, EducationRepository>();
-            //services.AddScoped<IRepository<ProfessionalExperience>, ProfessionalExperienceRepository>();
-            //services.AddScoped<IRepository<ProfessionalReference>, ProfessionalReferenceRepository>();
-            //services.AddScoped<IRepository<Accomplishment>, AccomplishmentRepository>();
-            //services.AddScoped<IRepository<Contact>, ContactRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddScoped<IService<Certificate>, CertificateService>();
@@ -91,52 +78,12 @@ namespace Klanik_Internal
                 o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            //.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddJwtBearer(o =>
             {
                 o.Authority = "https://localhost:44363";
                 o.Audience = "api1";
-                //o.ForwardAuthenticate = true;
                 o.RequireHttpsMetadata = false;
             });
-            #region commented out
-
-
-
-            // MVC AND COOKIES : https://www.developpez.net/forums/blogs/137868-hinault-romaric/b6763/identityserver4-creation-configuration-d-client-utilisant-openid-connect/
-            //services.Configure<CookiePolicyOptions>(o =>
-            //{
-            //    o.CheckConsentNeeded = context => true;
-            //    o.MinimumSameSitePolicy = SameSiteMode.None;
-            //});
-
-            //JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-
-            //services.AddAuthentication(o =>
-            //{
-            //    o.DefaultScheme = "Cookies";
-            //    o.DefaultChallengeScheme = "oidc";
-            //})
-            //.AddCookie("Cookies")
-            //.AddOpenIdConnect("oidc", o =>
-            //{
-            //    o.SignInScheme = "Cookies";
-            //    o.Authority = "https://localhost:44363";
-            //    o.RequireHttpsMetadata = false;
-            //    o.ClientId = "ro.VueJs";
-            //    o.SaveTokens = true;
-            //});
-
-            ////https://www.developpez.net/forums/blogs/137868-hinault-romaric/b6378/securisation-d-web-api-asp-net-core-sts-identityserver4/
-            //services.AddAuthentication("Bearer")
-            //    .AddIdentityServerAuthentication(o =>
-            //    {
-            //        o.Authority = "https://localhost:44363";
-            //        o.RequireHttpsMetadata = false;
-
-            //        o.ApiName = "api1";
-            //    });
-            #endregion
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

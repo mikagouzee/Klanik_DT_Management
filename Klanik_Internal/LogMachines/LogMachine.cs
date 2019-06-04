@@ -10,18 +10,14 @@ namespace Klanik_Internal.LogMachines
     public class LogMachine : ILogMachine
     {
         private string logFile;
-        private readonly IFileProvider _fileProvider;
 
-        public LogMachine(IFileProvider fileProvider)
+        public LogMachine()
         {
-            _fileProvider = fileProvider;
             string logFolderPath = "";
 
             var assemblyPath = AssemblyLocator.GetAssemblyLocation();
 
             var logFolder = Directory.GetDirectories(assemblyPath).FirstOrDefault(x => x == "logfolder");
-
-            //var logFolder = _fileProvider.GetDirectoryContents("").FirstOrDefault(x => x.Name == "logFolder");
 
             if (logFolder == null)
             {

@@ -12,5 +12,7 @@ namespace IdentityServer.Models.MailSender
         public string SendGridKey { get; set; }
 
         public string Fronturl { get; set; }
+
+        public string ConfirmationMailSender { get; set; }
     }
 }
