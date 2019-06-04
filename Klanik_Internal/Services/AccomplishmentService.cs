@@ -20,11 +20,6 @@ namespace Klanik_Internal.Services
             return _repo.GetById(id);
         }
 
-        //public Accomplishment GetByName(string name)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public void Delete(Accomplishment toRemove)
         {
             _repo.Delete(toRemove);
