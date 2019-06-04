@@ -21,11 +21,6 @@ namespace Klanik_Internal.Services
             return _repo.GetById(id);
         }
 
-        //public ProfessionalReference GetByName(string name)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public void Delete(ProfessionalReference toRemove)
         {
             _repo.Delete(toRemove);

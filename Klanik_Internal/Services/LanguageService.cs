@@ -16,11 +16,6 @@ namespace Klanik_Internal.Services
             _repo = repo;
         }
 
-        //public Language GetByName(string name)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public void Delete(Language toRemove)
         {
             _repo.Delete(toRemove);

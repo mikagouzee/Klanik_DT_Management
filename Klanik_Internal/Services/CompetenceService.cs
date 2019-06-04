@@ -16,12 +16,6 @@ namespace Klanik_Internal.Services
             _repo = repo;
         }
 
-        //public Competence GetByName(string name)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-
         public void Delete(Competence toRemove)
         {
             _repo.Delete(toRemove);
