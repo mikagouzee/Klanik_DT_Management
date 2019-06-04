@@ -2,14 +2,10 @@
 using Microsoft.Extensions.Options;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace IdentityServer.Models.MailSender
-{    public class EmailSender : IEmailSender
-    {
+namespace IdentityServer.Models.MailSender {
+    public class EmailSender : IEmailSender {
         public AuthMessageSenderOptions Options { get; set; }
 
         public EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor)
