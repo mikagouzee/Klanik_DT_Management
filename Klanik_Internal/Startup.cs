@@ -1,4 +1,5 @@
 using Klanik_Internal.Extensions;
+using Klanik_Internal.Filters;
 using Klanik_Internal.LogMachines;
 using Klanik_Internal.Models;
 using Klanik_Internal.Models.ConfigValues;
@@ -49,6 +50,7 @@ namespace Klanik_Internal {
             services.AddNodeServices();
 
             services.ConfigureIISIntegration();
+
             services.AddDbContext<KlanikContext>(opts =>
                 opts.UseSqlServer(Configuration["ConnectionString:KlanikDb"])
                 .EnableSensitiveDataLogging(true)
@@ -73,6 +75,9 @@ namespace Klanik_Internal {
             services.AddScoped<IService<ProfessionalReference>, ProfessionalReferenceService>();
             services.AddScoped<IService<Accomplishment>, AccomplishmentService>();
             services.AddScoped<IService<Models.Contact>, ContactService>();
+
+
+            services.AddScoped<ILogMachine, LogMachine>();
 
             services.AddAuthentication(o =>
             {
@@ -107,6 +112,7 @@ namespace Klanik_Internal {
             services.AddMvcCore(options =>
             {
                 options.Filters.Add(typeof(ValidateModelFilter));
+                options.Filters.Add(typeof(LogFilter));
             });
 
         }
@@ -125,27 +131,7 @@ namespace Klanik_Internal {
             }
 
             IdentityModelEventSource.ShowPII = true; //Add this line
-            //log request/response headers
-            app.Use(async (context, next) =>
-            {
-                _logMachine.Log("Request incoming");
-
-                foreach (var item in context.Request.Headers)
-                {
-                    _logMachine.Log("Request header " + item.Key + " : " + item.Value);
-                }
-
-
-                _logMachine.Log("Response incoming");
-                foreach (var item in context.Response.Headers)
-                {
-                    _logMachine.Log("Response header " + item.Key + " : " + item.Value);
-                }
-
-
-                await next.Invoke();
-            });
-
+            
             app.UseCors("CorsPolicy");
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Klanik_Internal.Tools {
+namespace Klanik_Internal.Filters {
 
     public class ValidateModelFilter : ActionFilterAttribute {
         public override void OnActionExecuting(ActionExecutingContext context)
