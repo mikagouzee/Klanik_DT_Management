@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Klanik_Internal.Tools {
+
     public class ValidateModelFilter : ActionFilterAttribute {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
@@ -11,4 +12,6 @@ namespace Klanik_Internal.Tools {
             }
         }
     }
+
+
 }

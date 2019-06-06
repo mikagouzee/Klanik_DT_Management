@@ -14,5 +14,6 @@ namespace IdentityServer.Models.MailSender
         public string Fronturl { get; set; }
 
         public string ConfirmationMailSender { get; set; }
+        public string MailsenderDisplayName { get; set; }
     }
 }
