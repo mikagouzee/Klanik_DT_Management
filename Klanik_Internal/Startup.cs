@@ -81,7 +81,7 @@ namespace Klanik_Internal {
             })
             .AddJwtBearer(o =>
             {
-                o.Authority = "http://localhost:54433";
+                o.Authority = "https://localhost:44363";
                 o.Audience = "api1";
                 o.RequireHttpsMetadata = false;
             });
@@ -104,6 +104,11 @@ namespace Klanik_Internal {
                 options.OperationFilter<SecurityRequirementsOperationFilter>();
             });
 
+            services.AddMvcCore(options =>
+            {
+                options.Filters.Add(typeof(ValidateModelFilter));
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -118,6 +123,7 @@ namespace Klanik_Internal {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             IdentityModelEventSource.ShowPII = true; //Add this line
             //log request/response headers
             app.Use(async (context, next) =>
