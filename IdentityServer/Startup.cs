@@ -58,24 +58,11 @@ namespace IdentityServer
 
             services.AddTransient<ILogMachine, LogMachine>();
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(c => {
-                c.SignIn.RequireConfirmedEmail = true;
-                })
-                .AddEntityFrameworkStores<KlanikIdentityContext>()
-                .AddDefaultTokenProviders();
+            services.ConfigureIdentity();
 
-            services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
-                .AddInMemoryPersistedGrants()
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients())
-                .AddProfileService<IdentityClaimsProfileService>()
-                .AddAspNetIdentity<ApplicationUser>();
-
+            services.ConfigureIdentityServer();
 
             services.AddTransient<IProfileService, IdentityClaimsProfileService>();
-
 
             services.ConfigureCors();
 
@@ -85,7 +72,7 @@ namespace IdentityServer
             {
                 o.Filters.Add(typeof(LogFilter));
                 o.Filters.Add(typeof(PratchettFilter));
-            })
+            });
 
         }
 

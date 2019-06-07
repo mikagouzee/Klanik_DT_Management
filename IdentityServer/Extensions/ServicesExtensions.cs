@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using IdentityServer.Models;
+using IdentityServer.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +22,27 @@ namespace IdentityServer.Extensions
                     .AllowCredentials());
             });
         }
+
+        public static void ConfigureIdentity(this IServiceCollection services)
+        {
+            services.AddIdentity<ApplicationUser, IdentityRole>(c => {
+                c.SignIn.RequireConfirmedEmail = true;
+            })
+                .AddEntityFrameworkStores<KlanikIdentityContext>()
+                .AddDefaultTokenProviders();
+        }
+
+        public static void ConfigureIdentityServer(this IServiceCollection services)
+        {
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryPersistedGrants()
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryClients(Config.GetClients())
+                .AddProfileService<IdentityClaimsProfileService>()
+                .AddAspNetIdentity<ApplicationUser>();
+        }
+
     }
 }

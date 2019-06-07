@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -28,5 +29,21 @@ namespace Klanik_Internal.Extensions
 
             });
         }
+
+        public static void ConfigureAuthentication(this IServiceCollection services)
+        {
+            services.AddAuthentication(o =>
+            {
+                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(o =>
+            {
+                o.Authority = "https://localhost:44363";
+                o.Audience = "api1";
+                o.RequireHttpsMetadata = false;
+            });
+        }
+
     }
 }
