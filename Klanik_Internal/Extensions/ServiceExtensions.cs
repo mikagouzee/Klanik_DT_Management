@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Klanik_Internal.Models.ConfigValues;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -30,7 +31,7 @@ namespace Klanik_Internal.Extensions
             });
         }
 
-        public static void ConfigureAuthentication(this IServiceCollection services)
+        public static void ConfigureAuthentication(this IServiceCollection services, JwtBearerConfig jwtConfig)
         {
             services.AddAuthentication(o =>
             {
@@ -39,8 +40,8 @@ namespace Klanik_Internal.Extensions
             })
             .AddJwtBearer(o =>
             {
-                o.Authority = "https://localhost:44363";
-                o.Audience = "api1";
+                o.Authority = jwtConfig.Authority;
+                o.Audience = jwtConfig.Audience;
                 o.RequireHttpsMetadata = false;
             });
         }

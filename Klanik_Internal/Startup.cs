@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Swashbuckle.AspNetCore.Filters;
 //Swagger
@@ -44,6 +45,7 @@ namespace Klanik_Internal {
 
             services.Configure<PdfConfig>(Configuration.GetSection("PdfConfig"));
             services.Configure<CORS>(Configuration.GetSection("Cors"));
+            services.Configure<JwtBearerConfig>(Configuration.GetSection("JwtBearer"));
 
             services.ConfigureCors();
 
@@ -73,7 +75,7 @@ namespace Klanik_Internal {
 
             services.AddScoped<ILogMachine, LogMachine>();
 
-            services.ConfigureAuthentication();
+            services.ConfigureAuthentication(services.BuildServiceProvider().GetRequiredService<IOptions<JwtBearerConfig>>().Value);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
