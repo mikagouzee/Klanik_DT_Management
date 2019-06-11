@@ -79,8 +79,8 @@ namespace Klanik_Internal.Controllers {
         {
             //Get the Konsultant
             Konsultant Opter = _service.GetById(optInModel.id);
-            Opter.OptIn = optInModel.optIn;
-            _service.Update(Opter);
+            //Opter.OptIn = optInModel.optIn;
+            //_service.Update(Opter);
             return Ok();
         }
     }
