@@ -403,30 +403,35 @@ namespace Klanik_Internal.Tools
             #endregion
 
             #region row education
-            sb.Append($@"
+            if(konsultant.Educations.Count > 0)
+            {
+                sb.Append($@"
                  <section class='row-education'>
                       <div class='section-title'>
                               <img src='{assetsFolder}/pictos/education.png' alt='edu-icon'><h2>Education</h2>
                       </div>
                       <div class='section-content'>
                           <table>");
-                          foreach (var edu in konsultant.Educations)
-            {
-                sb.Append($@"
+                foreach (var edu in konsultant.Educations)
+                {
+                    sb.Append($@"
                               <tr>
                                   <td>{edu.StartDate.Date.ToString("d")} to {edu.EndDate.Date.ToString("d")} </td>
                                   <td>{edu.Education.Name}</td>
                               </tr>");
-            }
-            sb.Append($@"
+                }
+                sb.Append($@"
                           </table>
                       </div>
                 </section>
             ");
+            }
             #endregion
 
             #region row certificate
-            sb.Append($@"
+            if (konsultant.Certificates.Count > 0)
+            {
+                sb.Append($@"
                  <section class='row-certificate'>
                     <div class='section-title'>
                         <img src='{assetsFolder}/pictos/certificate.png' alt='cert-icon'><h2>Certificates/Clearance</h2>
@@ -434,19 +439,21 @@ namespace Klanik_Internal.Tools
 
                     <div class='section-content'>
                         <table>");
-                       foreach (var cert in konsultant.Certificates)
-            {
-                sb.Append($@"
+                foreach (var cert in konsultant.Certificates)
+                {
+                    sb.Append($@"
                             <tr>
                                 <td>{cert.Obtension.Date.ToString("d")} </td>
                                 <td>{cert.Certificate.Name}</td>
                             </tr>");
-            }
-            sb.Append($@"
+                }
+                sb.Append($@"
                     </table>
                     </div>
                 </section>
             ");
+
+            }
             #endregion
 
             #region row summary
@@ -538,23 +545,26 @@ namespace Klanik_Internal.Tools
             #endregion
 
             #region row references
-            sb.Append($@"
+            if(konsultant.ProfessionalReferences.Count > 0)
+            {
+                sb.Append($@"
                 <section class='row-reference'>
                   <div class='section-title'>
                           <img src='{assetsFolder}/pictos/reference.png' alt='ref-icon'><h2>Professional References</h2>
                   </div>
                   <div class='section-content'>
                           <ul>");
-            foreach (var refer in konsultant.ProfessionalReferences)
-            {
-                sb.Append($@"<li>{refer.Surname} , {refer.Name}, {refer.Function}, {refer.Contacts.Mail}, {refer.Contacts.Phone}</li>");
-            }
+                foreach (var refer in konsultant.ProfessionalReferences)
+                {
+                    sb.Append($@"<li>{refer.Surname} , {refer.Name}, {refer.Function}, {refer.Contacts.Mail}, {refer.Contacts.Phone}</li>");
+                }
 
-            sb.Append($@"
+                sb.Append($@"
                           </ul>
                   </div>
                 </section>
             ");
+            }
             #endregion
 
             #region body closures
