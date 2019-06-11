@@ -1,0 +1,31 @@
+Cake is an automation tool allowing us to deploy, publish, clean or build our application automatically.
+
+It's called via the build.ps1 powershell script, with a list of argument to pass :
+
+.\build.ps1 -Script build_IdentityServer.cake -target Clean
+
+.\build.ps1 -Script build_IdentityServer.cake -target Deploy -configuration development
+
+etc
+
+The arguments are the usual argument required to deploy an application : 
+
+-configuration (dev, release, test, ...) DEFAULTS TO Release
+-framework (you should not need this argument actually) DEFAULTS TO netcoreapp2.0
+-runtime (the target runtime) DEFAULTS TO win10-argument
+-destinationIp (the Ip of the server) DEFAULTS TO 
+-destinationDirectory (where you expect your app to be deployed on the server ) DEFAULTS TO c$\ConsoleApps\Test 
+-username (Required if you deploy on ubuntu/linux) DEFAULTS TO ubuntu
+-executableName (Required if you deploy on ubuntu/linux, name of the app) DEFAULTS TO Klanik_Internal/IdentityServer respectively
+
+
+So in order to publish the solution :
+
+.\build.ps1 -Script build_IdentityServer.cake -target Publish
+.\build.ps1 -Script build_KlanikInternal.cake -target Publish
+
+These command will clean, restore, build then publish their respective target applications to their publish folder.
+
+To deploy, simply replace "publish" by "Deploy".
+
+Enjoy your cake.
