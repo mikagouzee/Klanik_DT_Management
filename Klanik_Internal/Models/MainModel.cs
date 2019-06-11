@@ -25,7 +25,7 @@ namespace Klanik_Internal.Models {
         public string Surname { get; set; }
         public string Function { get; set; }
         public DateTime Availability { get; set; }
-        public Boolean? OptIn { get; set; }
+
         public virtual List<OwnedCompetences> Competences { get; set; } = new List<OwnedCompetences>();
         public virtual List<PersonalEducation> Educations { get; set; } = new List<PersonalEducation>();
         public virtual List<OwnedCertificate> Certificates { get; set; } = new List<OwnedCertificate>();

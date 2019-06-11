@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using IdentityServer.Models;
+﻿using IdentityServer.Models;
 using IdentityServer.Models.MailSender;
 using IdentityServer.Models.ViewModels;
 using IdentityServer.Repository;
-using Microsoft.AspNetCore.Html;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
-namespace IdentityServer.Controllers
-{
+namespace IdentityServer.Controllers {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : Controller
-    {
+    public class AccountController : Controller {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailSender _mailSender;
@@ -122,7 +116,7 @@ namespace IdentityServer.Controllers
                 return BadRequest();
 
             var user = await _userManager.FindByIdAsync(userId);
-            if(user == null)
+            if (user == null)
             {
                 return NotFound($"No user found with id {userId}.");
             }
@@ -138,7 +132,7 @@ namespace IdentityServer.Controllers
             //HtmlString res = new HtmlString($"Thank you for confirming your email. <a href='{HtmlEncoder.Default.Encode(url)}'>Back to our site</a>.");
 
             return Redirect(url);
-             
+
         }
 
         [HttpGet("ForgotPassword")]
@@ -146,7 +140,7 @@ namespace IdentityServer.Controllers
         {
             var user = await _userManager.FindByEmailAsync(email);
 
-            if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)) )
+            if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
                 return Ok();
 
             var code = await _userManager.GeneratePasswordResetTokenAsync(user);
@@ -155,11 +149,12 @@ namespace IdentityServer.Controllers
 
             string callbackurl = Url.Action("ResetPassword",
                 "Account",
-                values: new {
+                values: new
+                {
                     UserId = user.Id,
                     code = code
                 },
-                protocol:Request.Scheme
+                protocol: Request.Scheme
                );
 
             await _mailSender.SendEmailAsync(email, "Someone requested to reset your password",
@@ -171,7 +166,7 @@ namespace IdentityServer.Controllers
         [HttpGet("ResetPassword")]
         public async Task<IActionResult> ResetPassword(string userId, string code)
         {
-            if (userId== null || code == null)
+            if (userId == null || code == null)
                 return BadRequest();
 
             var user = await _userManager.FindByIdAsync(userId);
@@ -179,7 +174,7 @@ namespace IdentityServer.Controllers
             if (user == null)
                 return NotFound($"We could not found any user with id {userId}");
 
-          
+
             var url = _options.FrontUrl + $"/reset?userid={userId}&code={code}";
 
             return Redirect(url);
@@ -199,11 +194,11 @@ namespace IdentityServer.Controllers
             var result = await _userManager.ResetPasswordAsync(user, code, model.NewPassword);
 
 
-            if(result.Succeeded)
+            if (result.Succeeded)
                 return Ok();
 
             return BadRequest();
-        }     
+        }
 
         [HttpGet("users")]
         public IActionResult GetAllUsers()
@@ -223,6 +218,21 @@ namespace IdentityServer.Controllers
         public string Test()
         {
             return "You're in the account controller";
+        }
+
+        [HttpPut("OptIn")]
+        public async Task<IActionResult> OptIn([FromBody]OptInModel optInModel)
+        {
+            //Get the user 
+            if (optInModel == null || optInModel.id == null)
+                return BadRequest();
+            var user = await _userManager.FindByIdAsync(optInModel.id.ToString());
+            if (user == null)
+                return NotFound($"We could not found any user with id {optInModel.id.ToString()}");
+            //Change user OptIn 
+            user.OptIn = optInModel?.optIn;
+            await _userManager.UpdateAsync(user);
+            return Ok();
         }
     }
 }
