@@ -74,14 +74,6 @@ namespace Klanik_Internal.Controllers {
             _service.Delete(_service.GetById(id));
             return Ok();
         }
-        [HttpPut("OptIn")]
-        public IActionResult OptIn([FromBody]OptInModel optInModel)
-        {
-            //Get the Konsultant
-            Konsultant Opter = _service.GetById(optInModel.id);
-            Opter.OptIn = optInModel.optIn;
-            _service.Update(Opter);
-            return Ok();
-        }
+
     }
 }
