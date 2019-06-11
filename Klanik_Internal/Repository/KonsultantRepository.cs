@@ -1,17 +1,13 @@
 ﻿using Klanik_Internal.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore.Query;
 
-namespace Klanik_Internal.Repository
-{
-    public class KonsultantRepository : IRepository<Konsultant>
-    {
+namespace Klanik_Internal.Repository {
+    public class KonsultantRepository : IRepository<Konsultant> {
         private readonly IServiceProvider _provider;
         private readonly IList<Expression<Func<Konsultant, object>>> _modifiers;
 
@@ -29,14 +25,14 @@ namespace Klanik_Internal.Repository
 
                 var exists = _context.Konsultants.Any(x => x.Id == toCreate.Id);
 
-                if(exists)
+                if (exists)
                 {
                     Update(toCreate);
                 }
                 else
                 {
                     _context.Add(toCreate);
-                }               
+                }
 
                 _context.SaveChanges();
             }
@@ -49,6 +45,7 @@ namespace Klanik_Internal.Repository
                 KlanikContext _context = _provider.GetService<KlanikContext>();
 
                 _context.Entry(toRemove).State = EntityState.Deleted;
+                _context.SaveChanges();
             }
         }
 
@@ -86,7 +83,7 @@ namespace Klanik_Internal.Repository
                         .ThenInclude(p => p.Contacts)
                     .FirstOrDefault(x => x.Id == id);
             }
-        }    
+        }
 
         public IRepository<Konsultant> Include(Expression<Func<Konsultant, object>> path)
         {
