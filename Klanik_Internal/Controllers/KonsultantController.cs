@@ -67,5 +67,13 @@ namespace Klanik_Internal.Controllers {
             return Ok(toC.Id);
         }
 
+        [Authorize(Roles = "Admin, SuperUser")]
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
+        {
+            _service.Delete(_service.GetById(id));
+            return Ok();
+        }
+
     }
 }

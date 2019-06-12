@@ -3,12 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace IdentityServer.Repository
-{
-    public class UserRepository : IUserRepository
-    {
+namespace IdentityServer.Repository {
+    public class UserRepository : IUserRepository {
         private readonly IServiceProvider _provider;
 
         public UserRepository(IServiceProvider provider)
@@ -40,10 +37,10 @@ namespace IdentityServer.Repository
             }
         }
 
+
     }
 
-    public interface IUserRepository
-    {
+    public interface IUserRepository {
         IEnumerable<ProfileViewModel> GetAllUsers();
 
         IEnumerable<string> GetAllRoles();

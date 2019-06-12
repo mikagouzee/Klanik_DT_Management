@@ -4,14 +4,16 @@ using Klanik_Internal.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Klanik_Internal.Migrations
 {
     [DbContext(typeof(KlanikContext))]
-    partial class KlanikContextModelSnapshot : ModelSnapshot
+    [Migration("20190612111116_CorrectMappingRecruiter")]
+    partial class CorrectMappingRecruiter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,17 +55,17 @@ namespace Klanik_Internal.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8ee72fed-7353-4f8f-9268-444a20bf557c"),
+                            Id = new Guid("ea562119-f016-419a-bf10-816eea00f660"),
                             Name = "C# certified developer"
                         },
                         new
                         {
-                            Id = new Guid("044dfa0b-a500-4789-9ba9-ec7080fa5bd6"),
+                            Id = new Guid("50d7d8f7-5b1e-4ead-8cb3-9157955174fd"),
                             Name = "High School Diploma"
                         },
                         new
                         {
-                            Id = new Guid("cbc5015e-0132-4876-9d87-130de1f8ad74"),
+                            Id = new Guid("8736651c-c540-444c-82ee-40e53611e88f"),
                             Name = "BadAss Dev"
                         });
                 });
@@ -82,12 +84,12 @@ namespace Klanik_Internal.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0d8d89db-20c8-4739-a1e5-d11a40008337"),
+                            Id = new Guid("ac76d66f-c8fe-49c7-80bc-7cf6eea53cc6"),
                             Name = "dotNet"
                         },
                         new
                         {
-                            Id = new Guid("ef2e82f2-92ab-40d9-9868-604d32e76ef2"),
+                            Id = new Guid("341a84f5-73e4-4f89-bee8-12e8c4b46fd8"),
                             Name = "javascript"
                         });
                 });
@@ -125,12 +127,12 @@ namespace Klanik_Internal.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a76ace17-25ce-4886-9f2f-9bb378c690cb"),
+                            Id = new Guid("a206a2ff-9867-452a-97c3-a43f36121516"),
                             Name = "SelfTaught"
                         },
                         new
                         {
-                            Id = new Guid("3496c212-d906-4052-a99d-d8cb0d0383ad"),
+                            Id = new Guid("2c214277-99c2-41ca-8af1-65738c420928"),
                             Name = "High School"
                         });
                 });
@@ -154,43 +156,43 @@ namespace Klanik_Internal.Migrations
                     b.HasData(
                         new
                         {
-                            KonsultantId = new Guid("3974a038-d319-4e3b-8e24-140d2646e497"),
-                            LanguageId = new Guid("49db0149-9460-486c-8dd5-3717916d7e1f"),
+                            KonsultantId = new Guid("b4a9ba8c-2ec5-4be1-8903-c683af49509e"),
+                            LanguageId = new Guid("c597bc24-1879-46d4-948a-a875c78138ec"),
                             Fluency = 5,
                             IsRelevant = true
                         },
                         new
                         {
-                            KonsultantId = new Guid("3974a038-d319-4e3b-8e24-140d2646e497"),
-                            LanguageId = new Guid("3f09f17c-b2df-4822-b1e1-6da42338576c"),
+                            KonsultantId = new Guid("b4a9ba8c-2ec5-4be1-8903-c683af49509e"),
+                            LanguageId = new Guid("425a1fb4-590c-4061-b81b-0da54fc3f1af"),
                             Fluency = 2,
                             IsRelevant = true
                         },
                         new
                         {
-                            KonsultantId = new Guid("3974a038-d319-4e3b-8e24-140d2646e497"),
-                            LanguageId = new Guid("514edce5-6ac2-4519-b2d5-27d7d6879a13"),
+                            KonsultantId = new Guid("b4a9ba8c-2ec5-4be1-8903-c683af49509e"),
+                            LanguageId = new Guid("29d934ee-45ff-4ffb-95b2-86818020e09c"),
                             Fluency = 4,
                             IsRelevant = true
                         },
                         new
                         {
-                            KonsultantId = new Guid("6b2dc53d-99c1-495b-8635-3fe4f3773c4c"),
-                            LanguageId = new Guid("49db0149-9460-486c-8dd5-3717916d7e1f"),
+                            KonsultantId = new Guid("1bd32504-135e-435b-9d6a-96b155c1c7b8"),
+                            LanguageId = new Guid("c597bc24-1879-46d4-948a-a875c78138ec"),
                             Fluency = 5,
                             IsRelevant = true
                         },
                         new
                         {
-                            KonsultantId = new Guid("6b2dc53d-99c1-495b-8635-3fe4f3773c4c"),
-                            LanguageId = new Guid("514edce5-6ac2-4519-b2d5-27d7d6879a13"),
+                            KonsultantId = new Guid("1bd32504-135e-435b-9d6a-96b155c1c7b8"),
+                            LanguageId = new Guid("29d934ee-45ff-4ffb-95b2-86818020e09c"),
                             Fluency = 4,
                             IsRelevant = true
                         },
                         new
                         {
-                            KonsultantId = new Guid("6b2dc53d-99c1-495b-8635-3fe4f3773c4c"),
-                            LanguageId = new Guid("3f09f17c-b2df-4822-b1e1-6da42338576c"),
+                            KonsultantId = new Guid("1bd32504-135e-435b-9d6a-96b155c1c7b8"),
+                            LanguageId = new Guid("425a1fb4-590c-4061-b81b-0da54fc3f1af"),
                             Fluency = 1,
                             IsRelevant = true
                         });
@@ -220,15 +222,15 @@ namespace Klanik_Internal.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("3974a038-d319-4e3b-8e24-140d2646e497"),
-                            Availability = new DateTime(2019, 6, 12, 14, 4, 15, 268, DateTimeKind.Local).AddTicks(568),
+                            Id = new Guid("b4a9ba8c-2ec5-4be1-8903-c683af49509e"),
+                            Availability = new DateTime(2019, 6, 12, 13, 11, 15, 696, DateTimeKind.Local).AddTicks(1541),
                             Function = "FullStack .Net Developer",
                             Name = "Michel",
                             Surname = "Gouzee"
                         },
                         new
                         {
-                            Id = new Guid("6b2dc53d-99c1-495b-8635-3fe4f3773c4c"),
+                            Id = new Guid("1bd32504-135e-435b-9d6a-96b155c1c7b8"),
                             Availability = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Function = "FullStack .Net Developer",
                             Name = "Barnabé",
@@ -250,17 +252,17 @@ namespace Klanik_Internal.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("49db0149-9460-486c-8dd5-3717916d7e1f"),
+                            Id = new Guid("c597bc24-1879-46d4-948a-a875c78138ec"),
                             Name = "Français"
                         },
                         new
                         {
-                            Id = new Guid("3f09f17c-b2df-4822-b1e1-6da42338576c"),
+                            Id = new Guid("425a1fb4-590c-4061-b81b-0da54fc3f1af"),
                             Name = "Néerlandais"
                         },
                         new
                         {
-                            Id = new Guid("514edce5-6ac2-4519-b2d5-27d7d6879a13"),
+                            Id = new Guid("29d934ee-45ff-4ffb-95b2-86818020e09c"),
                             Name = "Anglais"
                         });
                 });
@@ -286,32 +288,32 @@ namespace Klanik_Internal.Migrations
                     b.HasData(
                         new
                         {
-                            CertificateId = new Guid("8ee72fed-7353-4f8f-9268-444a20bf557c"),
-                            KonsultantId = new Guid("3974a038-d319-4e3b-8e24-140d2646e497"),
+                            CertificateId = new Guid("ea562119-f016-419a-bf10-816eea00f660"),
+                            KonsultantId = new Guid("b4a9ba8c-2ec5-4be1-8903-c683af49509e"),
                             EndOfValidity = new DateTime(2019, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsRelevant = true,
                             Obtension = new DateTime(2017, 9, 28, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CertificateId = new Guid("cbc5015e-0132-4876-9d87-130de1f8ad74"),
-                            KonsultantId = new Guid("3974a038-d319-4e3b-8e24-140d2646e497"),
+                            CertificateId = new Guid("8736651c-c540-444c-82ee-40e53611e88f"),
+                            KonsultantId = new Guid("b4a9ba8c-2ec5-4be1-8903-c683af49509e"),
                             EndOfValidity = new DateTime(2099, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsRelevant = true,
                             Obtension = new DateTime(2017, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CertificateId = new Guid("044dfa0b-a500-4789-9ba9-ec7080fa5bd6"),
-                            KonsultantId = new Guid("6b2dc53d-99c1-495b-8635-3fe4f3773c4c"),
+                            CertificateId = new Guid("50d7d8f7-5b1e-4ead-8cb3-9157955174fd"),
+                            KonsultantId = new Guid("1bd32504-135e-435b-9d6a-96b155c1c7b8"),
                             EndOfValidity = new DateTime(2099, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsRelevant = true,
                             Obtension = new DateTime(2014, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            CertificateId = new Guid("cbc5015e-0132-4876-9d87-130de1f8ad74"),
-                            KonsultantId = new Guid("6b2dc53d-99c1-495b-8635-3fe4f3773c4c"),
+                            CertificateId = new Guid("8736651c-c540-444c-82ee-40e53611e88f"),
+                            KonsultantId = new Guid("1bd32504-135e-435b-9d6a-96b155c1c7b8"),
                             EndOfValidity = new DateTime(2099, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsRelevant = true,
                             Obtension = new DateTime(2014, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -337,29 +339,29 @@ namespace Klanik_Internal.Migrations
                     b.HasData(
                         new
                         {
-                            CompetenceId = new Guid("0d8d89db-20c8-4739-a1e5-d11a40008337"),
-                            KonsultantId = new Guid("3974a038-d319-4e3b-8e24-140d2646e497"),
+                            CompetenceId = new Guid("ac76d66f-c8fe-49c7-80bc-7cf6eea53cc6"),
+                            KonsultantId = new Guid("b4a9ba8c-2ec5-4be1-8903-c683af49509e"),
                             IsRelevant = true,
                             Rating = 4
                         },
                         new
                         {
-                            CompetenceId = new Guid("ef2e82f2-92ab-40d9-9868-604d32e76ef2"),
-                            KonsultantId = new Guid("3974a038-d319-4e3b-8e24-140d2646e497"),
+                            CompetenceId = new Guid("341a84f5-73e4-4f89-bee8-12e8c4b46fd8"),
+                            KonsultantId = new Guid("b4a9ba8c-2ec5-4be1-8903-c683af49509e"),
                             IsRelevant = true,
                             Rating = 2
                         },
                         new
                         {
-                            CompetenceId = new Guid("0d8d89db-20c8-4739-a1e5-d11a40008337"),
-                            KonsultantId = new Guid("6b2dc53d-99c1-495b-8635-3fe4f3773c4c"),
+                            CompetenceId = new Guid("ac76d66f-c8fe-49c7-80bc-7cf6eea53cc6"),
+                            KonsultantId = new Guid("1bd32504-135e-435b-9d6a-96b155c1c7b8"),
                             IsRelevant = true,
                             Rating = 4
                         },
                         new
                         {
-                            CompetenceId = new Guid("ef2e82f2-92ab-40d9-9868-604d32e76ef2"),
-                            KonsultantId = new Guid("6b2dc53d-99c1-495b-8635-3fe4f3773c4c"),
+                            CompetenceId = new Guid("341a84f5-73e4-4f89-bee8-12e8c4b46fd8"),
+                            KonsultantId = new Guid("1bd32504-135e-435b-9d6a-96b155c1c7b8"),
                             IsRelevant = true,
                             Rating = 4
                         });
@@ -386,16 +388,16 @@ namespace Klanik_Internal.Migrations
                     b.HasData(
                         new
                         {
-                            EducationId = new Guid("a76ace17-25ce-4886-9f2f-9bb378c690cb"),
-                            KonsultantId = new Guid("3974a038-d319-4e3b-8e24-140d2646e497"),
+                            EducationId = new Guid("a206a2ff-9867-452a-97c3-a43f36121516"),
+                            KonsultantId = new Guid("b4a9ba8c-2ec5-4be1-8903-c683af49509e"),
                             EndDate = new DateTime(2099, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsRelevant = true,
                             StartDate = new DateTime(2016, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
-                            EducationId = new Guid("3496c212-d906-4052-a99d-d8cb0d0383ad"),
-                            KonsultantId = new Guid("6b2dc53d-99c1-495b-8635-3fe4f3773c4c"),
+                            EducationId = new Guid("2c214277-99c2-41ca-8af1-65738c420928"),
+                            KonsultantId = new Guid("1bd32504-135e-435b-9d6a-96b155c1c7b8"),
                             EndDate = new DateTime(2014, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsRelevant = true,
                             StartDate = new DateTime(2011, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)

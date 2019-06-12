@@ -1,4 +1,5 @@
 ﻿using IdentityServer.Extensions;
+using IdentityServer.Filters;
 using IdentityServer.Models;
 using IdentityServer.Models.MailSender;
 using IdentityServer.Repository;
@@ -57,28 +58,21 @@ namespace IdentityServer
 
             services.AddTransient<ILogMachine, LogMachine>();
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(c => {
-                c.SignIn.RequireConfirmedEmail = true;
-                })
-                .AddEntityFrameworkStores<KlanikIdentityContext>()
-                .AddDefaultTokenProviders();
+            services.ConfigureIdentity();
 
-            services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
-                .AddInMemoryPersistedGrants()
-                .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients())
-                .AddProfileService<IdentityClaimsProfileService>()
-                .AddAspNetIdentity<ApplicationUser>();
-
+            services.ConfigureIdentityServer();
 
             services.AddTransient<IProfileService, IdentityClaimsProfileService>();
-
 
             services.ConfigureCors();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddMvcCore(o =>
+            {
+                o.Filters.Add(typeof(LogFilter));
+                o.Filters.Add(typeof(PratchettFilter));
+            });
 
         }
 
@@ -102,33 +96,6 @@ namespace IdentityServer
                 ForwardedHeaders = ForwardedHeaders.All
             });
 
-            //clacks - overhead
-            app.Use(async (context, next) =>
-            {
-                context.Response.Headers.Add("X-Clacks-Overhead", "GNU Terry Pratchett");
-                await next.Invoke();
-            });
-
-            //log request/response headers
-            app.Use(async (context, next) =>
-            {
-                _logMachine.Log("Request incoming");
-
-                foreach (var item in context.Request.Headers)
-                {
-                    _logMachine.Log("Request header " + item.Key + " : " + item.Value);
-                }
-
-
-                _logMachine.Log("Response incoming");
-                foreach (var item in context.Response.Headers)
-                {
-                    _logMachine.Log("Response header " + item.Key + " : " + item.Value);
-                }
-
-
-                await next.Invoke();
-            });
 
             app.UseIdentityServer();
             app.UseAuthentication();

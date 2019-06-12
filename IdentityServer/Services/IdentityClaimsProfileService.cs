@@ -6,15 +6,12 @@ using IdentityServer4.Models;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace IdentityServer.Services
-{
-    public class IdentityClaimsProfileService : IProfileService
-    {
+namespace IdentityServer.Services {
+    public class IdentityClaimsProfileService : IProfileService {
         private readonly IUserClaimsPrincipalFactory<ApplicationUser> _claimsFactory;
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -39,6 +36,8 @@ namespace IdentityServer.Services
             claims = claims.Where(claim => context.RequestedClaimTypes.Contains(claim.Type)).ToList();
             claims.Add(new Claim(JwtClaimTypes.GivenName, user.FirstName));
             claims.Add(new Claim(IdentityServerConstants.StandardScopes.Email, user.Email));
+            claims.Add(new Claim("OptIn", user.OptIn.ToString()));
+            claims.Add(new Claim("UserType", user.UserType.ToString()));
 
             foreach (var role in roles)
             {

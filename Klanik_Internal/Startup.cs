@@ -1,4 +1,5 @@
 using Klanik_Internal.Extensions;
+using Klanik_Internal.Filters;
 using Klanik_Internal.LogMachines;
 using Klanik_Internal.Models;
 using Klanik_Internal.Models.ConfigValues;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Swashbuckle.AspNetCore.Filters;
 //Swagger
@@ -43,24 +45,23 @@ namespace Klanik_Internal {
 
             services.Configure<PdfConfig>(Configuration.GetSection("PdfConfig"));
             services.Configure<CORS>(Configuration.GetSection("Cors"));
+            services.Configure<JwtBearerConfig>(Configuration.GetSection("JwtBearer"));
 
             services.ConfigureCors();
 
             services.AddNodeServices();
 
             services.ConfigureIISIntegration();
+
             services.AddDbContext<KlanikContext>(opts =>
                 opts.UseSqlServer(Configuration["ConnectionString:KlanikDb"])
                 .EnableSensitiveDataLogging(true)
                 );
 
-
-
             services.AddScoped<IServiceProvider, ServiceProvider>();
-
             services.AddScoped<IMapper, Mapper>();
             services.AddScoped<IService<Konsultant>, KonsultantService>();
-
+            services.AddScoped<IService<Recruiter>, RecruiterService>();
             services.AddScoped<IRepository<Konsultant>, KonsultantRepository>();
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -74,17 +75,9 @@ namespace Klanik_Internal {
             services.AddScoped<IService<Accomplishment>, AccomplishmentService>();
             services.AddScoped<IService<Models.Contact>, ContactService>();
 
-            services.AddAuthentication(o =>
-            {
-                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(o =>
-            {
-                o.Authority = "https://localhost:44363";
-                o.Audience = "api1";
-                o.RequireHttpsMetadata = false;
-            });
+            services.AddScoped<ILogMachine, LogMachine>();
+
+            services.ConfigureAuthentication(services.BuildServiceProvider().GetRequiredService<IOptions<JwtBearerConfig>>().Value);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -107,6 +100,7 @@ namespace Klanik_Internal {
             services.AddMvcCore(options =>
             {
                 options.Filters.Add(typeof(ValidateModelFilter));
+                options.Filters.Add(typeof(LogFilter));
             });
 
         }
@@ -125,27 +119,7 @@ namespace Klanik_Internal {
             }
 
             IdentityModelEventSource.ShowPII = true; //Add this line
-            //log request/response headers
-            app.Use(async (context, next) =>
-            {
-                _logMachine.Log("Request incoming");
-
-                foreach (var item in context.Request.Headers)
-                {
-                    _logMachine.Log("Request header " + item.Key + " : " + item.Value);
-                }
-
-
-                _logMachine.Log("Response incoming");
-                foreach (var item in context.Response.Headers)
-                {
-                    _logMachine.Log("Response header " + item.Key + " : " + item.Value);
-                }
-
-
-                await next.Invoke();
-            });
-
+            
             app.UseCors("CorsPolicy");
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
