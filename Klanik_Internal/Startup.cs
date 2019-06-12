@@ -61,7 +61,9 @@ namespace Klanik_Internal {
             services.AddScoped<IServiceProvider, ServiceProvider>();
             services.AddScoped<IMapper, Mapper>();
             services.AddScoped<IService<Konsultant>, KonsultantService>();
+            services.AddScoped<IService<Recruiter>, RecruiterService>();
             services.AddScoped<IRepository<Konsultant>, KonsultantRepository>();
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IService<Certificate>, CertificateService>();
             services.AddScoped<IService<Language>, LanguageService>();

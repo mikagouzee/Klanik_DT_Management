@@ -4,14 +4,16 @@ using IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IdentityServer.Migrations
 {
     [DbContext(typeof(KlanikIdentityContext))]
-    partial class KlanikIdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20190612082111_Add_UserType_To_ApplicationUser")]
+    partial class Add_UserType_To_ApplicationUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

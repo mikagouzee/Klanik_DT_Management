@@ -37,6 +37,7 @@ namespace IdentityServer.Services {
             claims.Add(new Claim(JwtClaimTypes.GivenName, user.FirstName));
             claims.Add(new Claim(IdentityServerConstants.StandardScopes.Email, user.Email));
             claims.Add(new Claim("OptIn", user.OptIn.ToString()));
+            claims.Add(new Claim("UserType", user.UserType.ToString()));
 
             foreach (var role in roles)
             {

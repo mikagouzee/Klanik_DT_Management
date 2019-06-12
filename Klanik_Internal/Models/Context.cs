@@ -41,6 +41,7 @@ namespace Klanik_Internal.Models
             modelBuilder.Entity<ProfessionalReference>().ToTable("ProfessionalReference");
             modelBuilder.Entity<Contact>().ToTable("Contact");
             modelBuilder.Entity<Language>().ToTable("Language");
+            modelBuilder.Entity<Recruiter>().ToTable("Recruiter");
 
             modelBuilder.Entity<OwnedCompetences>().ToTable("OwnedCompetence");
             modelBuilder.Entity<PersonalEducation>().ToTable("PersonalEducation");
@@ -82,6 +83,17 @@ namespace Klanik_Internal.Models
                 Function = "FullStack .Net Developer",
                 Availability = new DateTime(2020, 1, 1)
             };
+
+            var meRecruiter = new Recruiter
+            {
+                Id = Guid.Parse("d2004e8d-aa24-4c04-a2ed-4e4a475a1cc8"),
+                Name = me.Name,
+                Surname = me.Surname
+            };
+
+            modelBuilder.Entity<Recruiter>().HasData(
+                meRecruiter
+                );
 
             modelBuilder.Entity<Konsultant>().HasData(
                 me,

@@ -19,6 +19,15 @@ namespace Klanik_Internal.Models {
         }
     }
 
+    public class Recruiter : KlanikEntity
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public Contact Contact { get; set; }
+        public virtual HashSet<Konsultant> Portfolio { get; set; } = new HashSet<Konsultant>();
+
+    }
+
 
     public class Konsultant : KlanikEntity {
         public string Name { get; set; }
@@ -32,6 +41,8 @@ namespace Klanik_Internal.Models {
         public virtual List<KnownLanguage> Languages { get; set; } = new List<KnownLanguage>();
         public virtual List<ProfessionalExperience> ProfessionalExperiences { get; set; } = new List<ProfessionalExperience>();
         public virtual List<ProfessionalReference> ProfessionalReferences { get; set; } = new List<ProfessionalReference>();
+
+        public virtual Recruiter Recruiter { get; set; }
     }
 
     public class Competence : KlanikEntity {

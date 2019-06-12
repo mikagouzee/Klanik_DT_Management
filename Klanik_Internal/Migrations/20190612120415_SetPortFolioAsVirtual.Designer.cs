@@ -4,14 +4,16 @@ using Klanik_Internal.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Klanik_Internal.Migrations
 {
     [DbContext(typeof(KlanikContext))]
-    partial class KlanikContextModelSnapshot : ModelSnapshot
+    [Migration("20190612120415_SetPortFolioAsVirtual")]
+    partial class SetPortFolioAsVirtual
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

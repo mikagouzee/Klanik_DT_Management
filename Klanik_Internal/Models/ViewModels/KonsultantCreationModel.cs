@@ -130,4 +130,9 @@ namespace Klanik_Internal.Models.ViewModels
         public string Company { get; set; }
     }
 
+    public class RecruiterUpdateModel
+    {
+        public Guid Id { get; set; }
+        public List<string> Konsultants { get; set; }
+    }
 }
