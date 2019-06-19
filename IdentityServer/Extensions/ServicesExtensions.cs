@@ -1,6 +1,13 @@
 ﻿using IdentityServer.Models;
+using IdentityServer.Models.MailSender;
+using IdentityServer.Repository;
 using IdentityServer.Services;
+using IdentityServer.Tools.ContextInitializer;
+using IdentityServer.Tools.LogMachine;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -44,5 +51,23 @@ namespace IdentityServer.Extensions
                 .AddAspNetIdentity<ApplicationUser>();
         }
 
+        public static void ConfigureIoC(this IServiceCollection services, IConfiguration Configuration)
+        {
+            //services and config
+            services.AddScoped<IServiceProvider, ServiceProvider>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddTransient<IEmailSender, EmailSender>();
+           
+            //identity db initialization
+            services.AddTransient<IStarter, Starter>();
+
+            services.AddTransient<ILogMachine, LogMachine>();
+
+            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("AuthMessageSenderOptions"));
+            services.Configure<FrontConfig>(Configuration.GetSection("FrontConfig"));
+
+            services.AddTransient<IProfileService, IdentityClaimsProfileService>();
+
+        }
     }
 }

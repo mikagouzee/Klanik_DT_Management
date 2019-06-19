@@ -47,6 +47,8 @@ namespace Klanik_Internal {
             services.Configure<CORS>(Configuration.GetSection("Cors"));
             services.Configure<JwtBearerConfig>(Configuration.GetSection("JwtBearer"));
 
+            services.ConfigureIoC(Configuration);
+
             services.ConfigureCors();
 
             services.AddNodeServices();
@@ -58,30 +60,11 @@ namespace Klanik_Internal {
                 .EnableSensitiveDataLogging(true)
                 );
 
-            services.AddScoped<IServiceProvider, ServiceProvider>();
-            services.AddScoped<IMapper, Mapper>();
-            services.AddScoped<IService<Konsultant>, KonsultantService>();
-            services.AddScoped<IService<Recruiter>, RecruiterService>();
-            services.AddScoped<IRepository<Konsultant>, KonsultantRepository>();
 
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped<IService<Certificate>, CertificateService>();
-            services.AddScoped<IService<Language>, LanguageService>();
-            services.AddScoped<IService<Competence>, CompetenceService>();
-            services.AddScoped<IService<TechnicalEnvironment>, TechnicalEnvironmentService>();
-            services.AddScoped<IService<Education>, EducationService>();
-            services.AddScoped<IService<ProfessionalExperience>, ProfessionalExperienceService>();
-            services.AddScoped<IService<ProfessionalReference>, ProfessionalReferenceService>();
-            services.AddScoped<IService<Accomplishment>, AccomplishmentService>();
-            services.AddScoped<IService<Models.Contact>, ContactService>();
-
-            services.AddScoped<ILogMachine, LogMachine>();
 
             services.ConfigureAuthentication(services.BuildServiceProvider().GetRequiredService<IOptions<JwtBearerConfig>>().Value);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddTransient<IGenerator, TemplateGenerator>();
 
             services.AddSwaggerGen(options =>
             {

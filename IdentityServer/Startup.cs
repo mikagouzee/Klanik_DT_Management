@@ -41,28 +41,16 @@ namespace IdentityServer
             var physicalProvider = _hostingEnvironment.ContentRootFileProvider;
             services.AddSingleton(physicalProvider);
 
-
             services.AddDbContext<KlanikIdentityContext>(o =>
                 o.UseSqlServer(Configuration["ConnectionString:IdentityDb"])
-            );
-
-            //services and config
-            services.AddScoped<IServiceProvider, ServiceProvider>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddTransient<IEmailSender, EmailSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("AuthMessageSenderOptions"));
-            services.Configure<FrontConfig>(Configuration.GetSection("FrontConfig"));
-
-            //identity db initialization
-            services.AddTransient<IStarter, Starter>();
-
-            services.AddTransient<ILogMachine, LogMachine>();
+            );            
 
             services.ConfigureIdentity();
 
             services.ConfigureIdentityServer();
 
-            services.AddTransient<IProfileService, IdentityClaimsProfileService>();
+            //must be called AFTER configureIdentityServer
+            services.ConfigureIoC(Configuration);
 
             services.ConfigureCors();
 

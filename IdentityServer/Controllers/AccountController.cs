@@ -214,12 +214,6 @@ namespace IdentityServer.Controllers {
             return Ok(result);
         }
 
-        [HttpGet]
-        public string Test()
-        {
-            return "You're in the account controller";
-        }
-
         [HttpPut("OptIn")]
         public async Task<IActionResult> OptIn([FromBody]OptInModel optInModel)
         {
