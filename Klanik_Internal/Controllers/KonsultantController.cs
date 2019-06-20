@@ -74,6 +74,12 @@ namespace Klanik_Internal.Controllers {
             _service.Delete(_service.GetById(id));
             return Ok();
         }
-
+        [HttpGet("Word/{id}")]
+        public IActionResult GetWord(Guid id)
+        {
+            WordProcessor.Exposed exposed = new WordProcessor.Exposed();
+            var doc = exposed.ExposeToApi(id);
+            return File(doc.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document", $"{id}DT.docx");
+        }
     }
 }

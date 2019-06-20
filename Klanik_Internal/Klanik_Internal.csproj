@@ -30,4 +30,22 @@
     <Folder Include="PdfAssets\fonts\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml">
+      <HintPath>..\..\..\Tools\WordProcessor\WordProcessor\bin\Debug\netcoreapp2.2\publish\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.SystemEvents">
+      <HintPath>..\..\..\Tools\WordProcessor\WordProcessor\bin\Debug\netcoreapp2.2\publish\Microsoft.Win32.SystemEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Common">
+      <HintPath>..\..\..\Tools\WordProcessor\WordProcessor\bin\Debug\netcoreapp2.2\publish\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Packaging">
+      <HintPath>..\..\..\Tools\WordProcessor\WordProcessor\bin\Debug\netcoreapp2.2\publish\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="WordProcessor">
+      <HintPath>..\..\..\Tools\WordProcessor\WordProcessor\bin\Debug\netcoreapp2.2\publish\WordProcessor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
