@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klanik_Internal", "Klanik_Internal\Klanik_Internal.csproj", "{EBA8BC26-D7A2-41C5-87CF-046BDE477C2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{E6CD9E1D-AB3C-484B-83FA-240CEB555B74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{E6CD9E1D-AB3C-484B-83FA-240CEB555B74}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordProcessor", "..\..\Tools\WordProcessor\WordProcessor\WordProcessor.csproj", "{38974EB9-CD08-4733-9633-733BAB42571D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E6CD9E1D-AB3C-484B-83FA-240CEB555B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6CD9E1D-AB3C-484B-83FA-240CEB555B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6CD9E1D-AB3C-484B-83FA-240CEB555B74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38974EB9-CD08-4733-9633-733BAB42571D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38974EB9-CD08-4733-9633-733BAB42571D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38974EB9-CD08-4733-9633-733BAB42571D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38974EB9-CD08-4733-9633-733BAB42571D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
