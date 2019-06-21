@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Klanik_Internal", "Klanik_I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{E6CD9E1D-AB3C-484B-83FA-240CEB555B74}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordProcessor", "..\..\Tools\WordProcessor\WordProcessor\WordProcessor.csproj", "{38974EB9-CD08-4733-9633-733BAB42571D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordProcessor", "WordProcessor\WordProcessor\WordProcessor.csproj", "{69C84544-5A77-43FC-9B83-432C20483B6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{E6CD9E1D-AB3C-484B-83FA-240CEB555B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6CD9E1D-AB3C-484B-83FA-240CEB555B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6CD9E1D-AB3C-484B-83FA-240CEB555B74}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38974EB9-CD08-4733-9633-733BAB42571D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38974EB9-CD08-4733-9633-733BAB42571D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38974EB9-CD08-4733-9633-733BAB42571D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38974EB9-CD08-4733-9633-733BAB42571D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69C84544-5A77-43FC-9B83-432C20483B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69C84544-5A77-43FC-9B83-432C20483B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69C84544-5A77-43FC-9B83-432C20483B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69C84544-5A77-43FC-9B83-432C20483B6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
