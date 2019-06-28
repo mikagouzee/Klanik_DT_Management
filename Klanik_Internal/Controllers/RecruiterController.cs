@@ -6,14 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace Klanik_Internal.Controllers
-{
+namespace Klanik_Internal.Controllers {
     [Route("api/[controller]")]
     [ApiController]
-    public class RecruiterController : Controller
-    {
+    public class RecruiterController : Controller {
         private readonly IService<Konsultant> _konsultantService;
         private readonly IService<Recruiter> _recruiterService;
 
@@ -29,42 +26,47 @@ namespace Klanik_Internal.Controllers
         {
             return Ok("Test");
         }
+        [Authorize]
+        [HttpGet("Portfolio/{id}")]
+        public IActionResult GetPortfolio(Guid id)
+        {
+            var recruiter = _recruiterService.GetById(id);
+            return Ok(recruiter);
 
+        }
         [Authorize(Roles = "Admin, SuperUser")]
         [HttpPost("UpdatePortfolio")]
         public IActionResult UpdatePortfolio([FromBody]RecruiterUpdateModel model)
         {
-
-
             var recruiter = _recruiterService.GetById(model.Id);
-
-            var RemovedFromPortfolio = recruiter.Portfolio
-                .Select(x => x.Id)
-                .Except(model.Konsultants.Select(y => Guid.Parse(y)))
-                .ToList();
-
-            foreach (var id in model.Konsultants)
+            //Get List of konsultant from model
+            HashSet<Guid> modelHset = new HashSet<Guid>();
+            modelHset = (from k in model.Konsultants select Guid.Parse(k)).ToHashSet<Guid>();
+            //Get database hashset
+            HashSet<Guid> dbHset = new HashSet<Guid>();
+            dbHset = recruiter.Portfolio.Select(c => c.Id).ToHashSet<Guid>();
+            //Following this logic : if dbHset is bigger, we need to remove K, else we Add them.
+            if (dbHset.Count > modelHset.Count)
             {
-                if(!recruiter.Portfolio.Any(x => x.Id == Guid.Parse(id)))
+                dbHset.SymmetricExceptWith(modelHset);
+                foreach (Guid id in dbHset)
                 {
-                    var kons = _konsultantService.GetById(Guid.Parse(id));
+                    var kons = _konsultantService.GetById(id);
+                    recruiter.Portfolio.Remove(kons);
+                }
+            }
+            else
+            {
+                modelHset.SymmetricExceptWith(dbHset);
+                foreach (Guid id in modelHset)
+                {
+                    var kons = _konsultantService.GetById(id);
                     recruiter.Portfolio.Add(kons);
                 }
             }
-
-            foreach (var id in RemovedFromPortfolio)
-            {
-                if(recruiter.Portfolio.Any(x => x.Id == id))
-                {
-                    recruiter.Portfolio.Remove(recruiter.Portfolio.FirstOrDefault(x => x.Id == id));
-                }
-            }
-
             _recruiterService.Update(recruiter);
-
-                    
-
             return Ok();
         }
+
     }
 }

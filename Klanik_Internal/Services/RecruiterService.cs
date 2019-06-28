@@ -2,13 +2,9 @@
 using Klanik_Internal.Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Klanik_Internal.Services
-{
-    public class RecruiterService : IService<Recruiter>
-    {
+namespace Klanik_Internal.Services {
+    public class RecruiterService : IService<Recruiter> {
         private readonly IRepository<Recruiter> _repo;
 
         public RecruiterService(IRepository<Recruiter> repo)
