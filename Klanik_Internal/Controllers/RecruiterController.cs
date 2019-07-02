@@ -34,10 +34,11 @@ namespace Klanik_Internal.Controllers {
             return Ok(recruiter);
 
         }
-        [Authorize(Roles = "Admin, SuperUser")]
+        [Authorize]
         [HttpPost("UpdatePortfolio")]
         public IActionResult UpdatePortfolio([FromBody]RecruiterUpdateModel model)
         {
+            List<string> errorMessage = new List<string>();
             var recruiter = _recruiterService.GetById(model.Id);
             //Get List of konsultant from model
             HashSet<Guid> modelHset = new HashSet<Guid>();
@@ -61,12 +62,29 @@ namespace Klanik_Internal.Controllers {
                 foreach (Guid id in modelHset)
                 {
                     var kons = _konsultantService.GetById(id);
-                    recruiter.Portfolio.Add(kons);
+                    if (IsKonsultantAlreadyUsed(kons))
+                    {
+                        errorMessage.Add($"The Konsultant {kons.Name} {kons.Surname} is already in an other portfolio");
+                    }
+                    else
+                    {
+                        recruiter.Portfolio.Add(kons);
+                    }
                 }
             }
             _recruiterService.Update(recruiter);
-            return Ok();
+            return Ok(errorMessage);
         }
 
+        public static bool IsKonsultantAlreadyUsed(Konsultant konsultant)
+        {
+            bool AlreadyInRecruiter = false;
+            if (konsultant.Recruiter != null)
+            {
+                AlreadyInRecruiter = true;
+            }
+
+            return AlreadyInRecruiter;
+        }
     }
 }

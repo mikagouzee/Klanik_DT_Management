@@ -81,6 +81,7 @@ namespace Klanik_Internal.Repository {
                         .ThenInclude(p => p.TechnicalEnvironments)
                     .Include(k => k.ProfessionalReferences)
                         .ThenInclude(p => p.Contacts)
+                    .Include(k => k.Recruiter)
                     .FirstOrDefault(x => x.Id == id);
             }
         }
@@ -233,6 +234,9 @@ namespace Klanik_Internal.Repository {
                 EntityState.Modified :
                 EntityState.Added;
         }
+
+
+
 
     }
 }
