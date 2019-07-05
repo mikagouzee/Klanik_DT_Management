@@ -228,5 +228,11 @@ namespace IdentityServer.Controllers {
             await _userManager.UpdateAsync(user);
             return Ok();
         }
+
+        [HttpGet("GetRecruteur/{id}")]
+        public IActionResult GetRecruteur(Guid id)
+        {
+            return Ok(_userRepository.GetOne(id));
+        }
     }
 }

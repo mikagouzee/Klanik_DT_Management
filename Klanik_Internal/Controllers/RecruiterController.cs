@@ -39,7 +39,21 @@ namespace Klanik_Internal.Controllers {
         public IActionResult UpdatePortfolio([FromBody]RecruiterUpdateModel model)
         {
             List<string> errorMessage = new List<string>();
+            //Recruteurs should be chcked in the IDS4 if not fund
             var recruiter = _recruiterService.GetById(model.Id);
+            if (recruiter is null)
+            {
+
+                recruiter = new Recruiter()
+                {
+                    Id = model.Id,
+                    Name = model.recruiter.Name,
+                    Surname = model.recruiter.Surname
+                };
+                _recruiterService.Create(recruiter);
+                _recruiterService.Update(recruiter);
+
+            }
             //Get List of konsultant from model
             HashSet<Guid> modelHset = new HashSet<Guid>();
             modelHset = (from k in model.Konsultants select Guid.Parse(k)).ToHashSet<Guid>();

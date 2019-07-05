@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Klanik_Internal.Models.ViewModels
-{
-    public class KonsultantCreationModel
-    {
+namespace Klanik_Internal.Models.ViewModels {
+    public class KonsultantCreationModel {
         public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -31,8 +27,7 @@ namespace Klanik_Internal.Models.ViewModels
         }
     }
 
-    public class CompetenceViewModel
-    {
+    public class CompetenceViewModel {
         public string Id { get; set; }
 
         public string Name { get; set; }
@@ -42,8 +37,7 @@ namespace Klanik_Internal.Models.ViewModels
         public bool IsDeleted { get; set; }
     }
 
-    public class LanguageViewModel
-    {
+    public class LanguageViewModel {
         public string Id { get; set; }
 
         public string Name { get; set; }
@@ -53,8 +47,7 @@ namespace Klanik_Internal.Models.ViewModels
         public bool IsDeleted { get; set; }
     }
 
-    public class CertificateViewModel
-    {
+    public class CertificateViewModel {
         public string Id { get; set; }
 
         public string Name { get; set; }
@@ -65,8 +58,7 @@ namespace Klanik_Internal.Models.ViewModels
         public bool IsDeleted { get; set; }
     }
 
-    public class EducationViewModel
-    {
+    public class EducationViewModel {
         public string Id { get; set; }
 
         public string Name { get; set; }
@@ -77,8 +69,7 @@ namespace Klanik_Internal.Models.ViewModels
         public bool IsDeleted { get; set; }
     }
 
-    public class ProfessionalExperienceViewModel
-    {
+    public class ProfessionalExperienceViewModel {
         public string Id { get; set; }
         public string Position { get; set; }
         public string Summary { get; set; }
@@ -99,8 +90,7 @@ namespace Klanik_Internal.Models.ViewModels
         }
     }
 
-    public class AccomplishmentViewModel
-    {
+    public class AccomplishmentViewModel {
         public string Id { get; set; }
 
         public string Title { get; set; }
@@ -109,8 +99,7 @@ namespace Klanik_Internal.Models.ViewModels
         public bool IsDeleted { get; set; }
     }
 
-    public class TechnicalEnvironmentViewModel
-    {
+    public class TechnicalEnvironmentViewModel {
         public string Id { get; set; }
 
         public string Name { get; set; }
@@ -119,8 +108,7 @@ namespace Klanik_Internal.Models.ViewModels
         public bool IsDeleted { get; set; }
     }
 
-    public class ProfessionalReferenceViewModel
-    {
+    public class ProfessionalReferenceViewModel {
         public string Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -130,8 +118,8 @@ namespace Klanik_Internal.Models.ViewModels
         public string Company { get; set; }
     }
 
-    public class RecruiterUpdateModel
-    {
+    public class RecruiterUpdateModel {
+        public Recruiter recruiter { get; set; }
         public Guid Id { get; set; }
         public List<string> Konsultants { get; set; }
     }

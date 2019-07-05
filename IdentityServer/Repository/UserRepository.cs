@@ -37,13 +37,24 @@ namespace IdentityServer.Repository {
             }
         }
 
+        public ProfileViewModel GetOne(Guid id)
+        {
 
+            using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                KlanikIdentityContext context = _provider.GetService<KlanikIdentityContext>();
+
+                return context.Users.Where(u => u.Id == id.ToString()).Select(x => new ProfileViewModel(x)).FirstOrDefault();
+
+            }
+        }
     }
 
     public interface IUserRepository {
         IEnumerable<ProfileViewModel> GetAllUsers();
 
         IEnumerable<string> GetAllRoles();
+        ProfileViewModel GetOne(Guid id);
     }
 
 }

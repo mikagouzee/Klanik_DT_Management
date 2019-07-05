@@ -2,13 +2,9 @@
 using Klanik_Internal.Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Klanik_Internal.Services
-{
-    public interface IService<T> where T : KlanikEntity
-    {
+namespace Klanik_Internal.Services {
+    public interface IService<T> where T : KlanikEntity {
         void Create(T toCreate);
 
         T GetById(Guid id);
@@ -22,8 +18,7 @@ namespace Klanik_Internal.Services
         //T GetByName(string name);
     }
 
-    public class Service<T> : IService<T> where T: KlanikEntity
-    {
+    public class Service<T> : IService<T> where T : KlanikEntity {
         private readonly IRepository<T> _repo;
 
         public Service(IRepository<T> repo)
@@ -56,6 +51,6 @@ namespace Klanik_Internal.Services
             _repo.Update(toEdit);
         }
 
-        
+
     }
 }
