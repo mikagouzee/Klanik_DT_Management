@@ -1,0 +1,505 @@
+2019-07-08 10:45:02.993 +02:00 [WRN] User 47dee7ce-9a4c-4ae2-bc2b-c9c7ad6b3fac is already in role Admin.
+2019-07-08 10:45:03.328 +02:00 [INF] Starting IdentityServer4 version 2.4.0.0
+2019-07-08 10:45:03.338 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-07-08 10:45:03.344 +02:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2019-07-08 10:45:03.344 +02:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for authentication
+2019-07-08 10:45:03.350 +02:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-in
+2019-07-08 10:45:03.350 +02:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-out
+2019-07-08 10:45:03.350 +02:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for challenge
+2019-07-08 10:45:03.350 +02:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for forbid
+2019-07-08 10:45:03.581 +02:00 [DBG] CORS request made for path: /connect/token from origin: http://localhost:8080
+2019-07-08 10:45:03.585 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 10:45:03.585 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 10:45:03.601 +02:00 [DBG] Login Url: /Account/Login
+2019-07-08 10:45:03.601 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-07-08 10:45:03.601 +02:00 [DBG] Logout Url: /Account/Logout
+2019-07-08 10:45:03.601 +02:00 [DBG] ConsentUrl Url: /consent
+2019-07-08 10:45:03.601 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-07-08 10:45:03.601 +02:00 [DBG] Error Url: /home/error
+2019-07-08 10:45:03.601 +02:00 [DBG] Error Id Parameter: errorId
+2019-07-08 10:45:03.624 +02:00 [DBG] Request path /connect/token matched to endpoint type Token
+2019-07-08 10:45:03.639 +02:00 [DBG] Endpoint enabled: Token, successfully created handler: IdentityServer4.Endpoints.TokenEndpoint
+2019-07-08 10:45:03.639 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2019-07-08 10:45:03.645 +02:00 [DBG] Start token request.
+2019-07-08 10:45:03.650 +02:00 [DBG] Start client validation
+2019-07-08 10:45:03.654 +02:00 [DBG] Start parsing Basic Authentication secret
+2019-07-08 10:45:03.657 +02:00 [DBG] Start parsing for secret in post body
+2019-07-08 10:45:03.691 +02:00 [DBG] Parser found secret: PostBodySecretParser
+2019-07-08 10:45:03.691 +02:00 [DBG] Secret id found: ro.VueJs
+2019-07-08 10:45:03.702 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 10:45:03.711 +02:00 [DBG] Secret validator success: HashedSharedSecretValidator
+2019-07-08 10:45:03.711 +02:00 [DBG] Client validation success
+2019-07-08 10:45:03.721 +02:00 [DBG] Start token request validation
+2019-07-08 10:45:03.733 +02:00 [DBG] Start resource owner password token request validation
+2019-07-08 10:45:03.851 +02:00 [INF] Credentials validated for username: Magba
+2019-07-08 10:45:03.859 +02:00 [DBG] Resource owner password token request validation success.
+2019-07-08 10:45:03.874 +02:00 [INF] Token request validation success
+{"ClientId":"ro.VueJs","ClientName":"Klanik front end","GrantType":"password","Scopes":"api1 openid profile","AuthorizationCode":null,"RefreshToken":null,"UserName":"Magba","AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"grant_type":"password","client_id":"ro.VueJs","client_secret":"***REDACTED***","username":"Magba","password":"***REDACTED***","scope":"openid profile api1"},"$type":"TokenRequestValidationLog"}
+2019-07-08 10:45:03.917 +02:00 [DBG] Getting claims for access token for client: ro.VueJs
+2019-07-08 10:45:03.918 +02:00 [DBG] Getting claims for access token for subject: 4d0c3ce9-66a0-4c52-9517-cb2a7e7f1bd5
+2019-07-08 10:45:04.122 +02:00 [DBG] Token request success.
+2019-07-08 10:45:04.216 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 10:45:04.217 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 10:45:04.217 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 10:45:04.219 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 10:45:04.224 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 10:45:04.225 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 10:45:04.238 +02:00 [DBG] Start userinfo request
+2019-07-08 10:45:04.244 +02:00 [DBG] Bearer token found in header
+2019-07-08 10:45:04.274 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 10:45:04.277 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 10:45:04.294 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 10:45:04.300 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562575504,"exp":1562579104,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"4d0c3ce9-66a0-4c52-9517-cb2a7e7f1bd5","auth_time":1562575503,"idp":"local","given_name":"Barnabe","family_name":"Magos","email":"barnabe.magos@gmail.com","OptIn":"True","UserType":"Unknown","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 10:45:04.307 +02:00 [DBG] Creating userinfo response
+2019-07-08 10:45:04.310 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 10:45:04.312 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 10:45:04.314 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 10:45:04.314 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 10:45:04.330 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType
+2019-07-08 10:45:04.331 +02:00 [DBG] End userinfo request
+2019-07-08 10:45:52.640 +02:00 [DBG] CORS request made for path: /api/Account from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 11:36:12.248 +02:00 [WRN] User 47dee7ce-9a4c-4ae2-bc2b-c9c7ad6b3fac is already in role Admin.
+2019-07-08 11:36:12.441 +02:00 [WRN] User b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b is already in role SuperUser.
+2019-07-08 11:36:12.534 +02:00 [INF] Starting IdentityServer4 version 2.4.0.0
+2019-07-08 11:36:12.544 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-07-08 11:36:12.550 +02:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2019-07-08 11:36:12.550 +02:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for authentication
+2019-07-08 11:36:12.550 +02:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-in
+2019-07-08 11:36:12.550 +02:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-out
+2019-07-08 11:36:12.550 +02:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for challenge
+2019-07-08 11:36:12.550 +02:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for forbid
+2019-07-08 11:36:12.777 +02:00 [DBG] CORS request made for path: /connect/token from origin: http://localhost:8080
+2019-07-08 11:36:12.782 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 11:36:12.782 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 11:36:12.795 +02:00 [DBG] Login Url: /Account/Login
+2019-07-08 11:36:12.795 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-07-08 11:36:12.795 +02:00 [DBG] Logout Url: /Account/Logout
+2019-07-08 11:36:12.795 +02:00 [DBG] ConsentUrl Url: /consent
+2019-07-08 11:36:12.795 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-07-08 11:36:12.795 +02:00 [DBG] Error Url: /home/error
+2019-07-08 11:36:12.796 +02:00 [DBG] Error Id Parameter: errorId
+2019-07-08 11:36:12.820 +02:00 [DBG] Request path /connect/token matched to endpoint type Token
+2019-07-08 11:36:12.834 +02:00 [DBG] Endpoint enabled: Token, successfully created handler: IdentityServer4.Endpoints.TokenEndpoint
+2019-07-08 11:36:12.834 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2019-07-08 11:36:12.841 +02:00 [DBG] Start token request.
+2019-07-08 11:36:12.846 +02:00 [DBG] Start client validation
+2019-07-08 11:36:12.850 +02:00 [DBG] Start parsing Basic Authentication secret
+2019-07-08 11:36:12.854 +02:00 [DBG] Start parsing for secret in post body
+2019-07-08 11:36:12.887 +02:00 [DBG] Parser found secret: PostBodySecretParser
+2019-07-08 11:36:12.887 +02:00 [DBG] Secret id found: ro.VueJs
+2019-07-08 11:36:12.898 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:36:12.905 +02:00 [DBG] Secret validator success: HashedSharedSecretValidator
+2019-07-08 11:36:12.905 +02:00 [DBG] Client validation success
+2019-07-08 11:36:12.913 +02:00 [DBG] Start token request validation
+2019-07-08 11:36:12.923 +02:00 [DBG] Start resource owner password token request validation
+2019-07-08 11:36:13.008 +02:00 [INF] Credentials validated for username: Magbas
+2019-07-08 11:36:13.013 +02:00 [DBG] Resource owner password token request validation success.
+2019-07-08 11:36:13.024 +02:00 [INF] Token request validation success
+{"ClientId":"ro.VueJs","ClientName":"Klanik front end","GrantType":"password","Scopes":"api1 openid profile","AuthorizationCode":null,"RefreshToken":null,"UserName":"Magbas","AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"grant_type":"password","client_id":"ro.VueJs","client_secret":"***REDACTED***","username":"Magbas","password":"***REDACTED***","scope":"openid profile api1"},"$type":"TokenRequestValidationLog"}
+2019-07-08 11:36:13.053 +02:00 [DBG] Getting claims for access token for client: ro.VueJs
+2019-07-08 11:36:13.054 +02:00 [DBG] Getting claims for access token for subject: 745bfc80-fe8b-4fbc-9881-d0d056765f82
+2019-07-08 11:36:13.251 +02:00 [DBG] Token request success.
+2019-07-08 11:36:13.392 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 11:36:13.392 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 11:36:13.392 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 11:36:13.393 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 11:36:13.394 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 11:36:13.394 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 11:36:13.401 +02:00 [DBG] Start userinfo request
+2019-07-08 11:36:13.404 +02:00 [DBG] Bearer token found in header
+2019-07-08 11:36:13.427 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:36:13.430 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:36:13.446 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 11:36:13.451 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562578573,"exp":1562582173,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"745bfc80-fe8b-4fbc-9881-d0d056765f82","auth_time":1562578573,"idp":"local","given_name":"Magos","family_name":"barnabe","email":"barnabe.magos@gmail.com","OptIn":"","UserType":"Unknown","role":"Basic User","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 11:36:13.461 +02:00 [DBG] Creating userinfo response
+2019-07-08 11:36:13.464 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:36:13.466 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:36:13.468 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 11:36:13.468 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:36:13.497 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType role
+2019-07-08 11:36:13.498 +02:00 [DBG] End userinfo request
+2019-07-08 11:36:20.210 +02:00 [DBG] CORS request made for path: /api/Account/OptIn/ from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 11:36:33.571 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-07-08 11:36:33.572 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-07-08 11:36:33.572 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-07-08 11:36:33.575 +02:00 [DBG] Start discovery request
+2019-07-08 11:36:33.644 +02:00 [DBG] Request path /.well-known/openid-configuration/jwks matched to endpoint type Discovery
+2019-07-08 11:36:33.645 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryKeyEndpoint
+2019-07-08 11:36:33.645 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2019-07-08 11:36:33.647 +02:00 [DBG] Start key discovery request
+2019-07-08 11:36:44.727 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 11:36:44.727 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 11:36:44.727 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 11:36:44.727 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 11:36:44.728 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 11:36:44.728 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 11:36:44.728 +02:00 [DBG] Start userinfo request
+2019-07-08 11:36:44.728 +02:00 [DBG] Bearer token found in header
+2019-07-08 11:36:44.731 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:36:44.732 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:36:44.748 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 11:36:44.748 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562578573,"exp":1562582173,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"745bfc80-fe8b-4fbc-9881-d0d056765f82","auth_time":1562578573,"idp":"local","given_name":"Magos","family_name":"barnabe","email":"barnabe.magos@gmail.com","OptIn":"","UserType":"Unknown","role":"Basic User","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 11:36:44.749 +02:00 [DBG] Creating userinfo response
+2019-07-08 11:36:44.749 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:36:44.749 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:36:44.749 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 11:36:44.749 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:36:44.780 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType role
+2019-07-08 11:36:44.780 +02:00 [DBG] End userinfo request
+2019-07-08 11:36:56.765 +02:00 [DBG] CORS request made for path: /connect/token from origin: http://localhost:8080
+2019-07-08 11:36:56.765 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 11:36:56.765 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 11:36:56.765 +02:00 [DBG] Request path /connect/token matched to endpoint type Token
+2019-07-08 11:36:56.766 +02:00 [DBG] Endpoint enabled: Token, successfully created handler: IdentityServer4.Endpoints.TokenEndpoint
+2019-07-08 11:36:56.766 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2019-07-08 11:36:56.766 +02:00 [DBG] Start token request.
+2019-07-08 11:36:56.766 +02:00 [DBG] Start client validation
+2019-07-08 11:36:56.766 +02:00 [DBG] Start parsing Basic Authentication secret
+2019-07-08 11:36:56.766 +02:00 [DBG] Start parsing for secret in post body
+2019-07-08 11:36:56.766 +02:00 [DBG] Parser found secret: PostBodySecretParser
+2019-07-08 11:36:56.766 +02:00 [DBG] Secret id found: ro.VueJs
+2019-07-08 11:36:56.766 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:36:56.766 +02:00 [DBG] Secret validator success: HashedSharedSecretValidator
+2019-07-08 11:36:56.766 +02:00 [DBG] Client validation success
+2019-07-08 11:36:56.766 +02:00 [DBG] Start token request validation
+2019-07-08 11:36:56.766 +02:00 [DBG] Start resource owner password token request validation
+2019-07-08 11:36:56.778 +02:00 [INF] Credentials validated for username: SuperUser
+2019-07-08 11:36:56.779 +02:00 [DBG] Resource owner password token request validation success.
+2019-07-08 11:36:56.779 +02:00 [INF] Token request validation success
+{"ClientId":"ro.VueJs","ClientName":"Klanik front end","GrantType":"password","Scopes":"api1 openid profile","AuthorizationCode":null,"RefreshToken":null,"UserName":"SuperUser","AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"grant_type":"password","client_id":"ro.VueJs","client_secret":"***REDACTED***","username":"SuperUser","password":"***REDACTED***","scope":"openid profile api1"},"$type":"TokenRequestValidationLog"}
+2019-07-08 11:36:56.779 +02:00 [DBG] Getting claims for access token for client: ro.VueJs
+2019-07-08 11:36:56.779 +02:00 [DBG] Getting claims for access token for subject: b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b
+2019-07-08 11:36:56.803 +02:00 [DBG] Token request success.
+2019-07-08 11:36:56.848 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 11:36:56.848 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 11:36:56.848 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 11:36:56.848 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 11:36:56.849 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 11:36:56.849 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 11:36:56.849 +02:00 [DBG] Start userinfo request
+2019-07-08 11:36:56.849 +02:00 [DBG] Bearer token found in header
+2019-07-08 11:36:56.851 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:36:56.851 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:36:56.856 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 11:36:56.856 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562578616,"exp":1562582216,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b","auth_time":1562578616,"idp":"local","given_name":"User","family_name":"Super","email":"mgouzee@klanik.com","OptIn":"","UserType":"Unknown","role":"SuperUser","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 11:36:56.856 +02:00 [DBG] Creating userinfo response
+2019-07-08 11:36:56.856 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:36:56.856 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:36:56.856 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 11:36:56.857 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:36:56.877 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType role
+2019-07-08 11:36:56.877 +02:00 [DBG] End userinfo request
+2019-07-08 11:37:46.694 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 11:37:46.694 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 11:37:46.694 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 11:37:46.694 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 11:37:46.694 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 11:37:46.694 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 11:37:46.694 +02:00 [DBG] Start userinfo request
+2019-07-08 11:37:46.694 +02:00 [DBG] Bearer token found in header
+2019-07-08 11:37:46.696 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:37:46.696 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:37:46.713 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 11:37:46.713 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562578616,"exp":1562582216,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b","auth_time":1562578616,"idp":"local","given_name":"User","family_name":"Super","email":"mgouzee@klanik.com","OptIn":"","UserType":"Unknown","role":"SuperUser","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 11:37:46.713 +02:00 [DBG] Creating userinfo response
+2019-07-08 11:37:46.714 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:37:46.714 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:37:46.714 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 11:37:46.714 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:37:46.744 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType role
+2019-07-08 11:37:46.744 +02:00 [DBG] End userinfo request
+2019-07-08 11:38:27.414 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 11:38:27.414 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 11:38:27.414 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 11:38:27.414 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 11:38:27.415 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 11:38:27.415 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 11:38:27.415 +02:00 [DBG] Start userinfo request
+2019-07-08 11:38:27.415 +02:00 [DBG] Bearer token found in header
+2019-07-08 11:38:27.418 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:38:27.418 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:38:27.429 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 11:38:27.429 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562578616,"exp":1562582216,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b","auth_time":1562578616,"idp":"local","given_name":"User","family_name":"Super","email":"mgouzee@klanik.com","OptIn":"","UserType":"Unknown","role":"SuperUser","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 11:38:27.429 +02:00 [DBG] Creating userinfo response
+2019-07-08 11:38:27.429 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:38:27.429 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:38:27.429 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 11:38:27.429 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:38:27.467 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType role
+2019-07-08 11:38:27.467 +02:00 [DBG] End userinfo request
+2019-07-08 11:40:11.982 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 11:40:11.982 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 11:40:11.982 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 11:40:11.982 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 11:40:11.982 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 11:40:11.982 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 11:40:11.982 +02:00 [DBG] Start userinfo request
+2019-07-08 11:40:11.982 +02:00 [DBG] Bearer token found in header
+2019-07-08 11:40:11.984 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:40:11.984 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:40:11.997 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 11:40:11.997 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562578616,"exp":1562582216,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b","auth_time":1562578616,"idp":"local","given_name":"User","family_name":"Super","email":"mgouzee@klanik.com","OptIn":"","UserType":"Unknown","role":"SuperUser","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 11:40:11.997 +02:00 [DBG] Creating userinfo response
+2019-07-08 11:40:11.997 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:40:11.997 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:40:11.997 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 11:40:11.997 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:40:12.025 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType role
+2019-07-08 11:40:12.025 +02:00 [DBG] End userinfo request
+2019-07-08 11:40:58.271 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 11:40:58.271 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 11:40:58.271 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 11:40:58.271 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 11:40:58.271 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 11:40:58.272 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 11:40:58.272 +02:00 [DBG] Start userinfo request
+2019-07-08 11:40:58.272 +02:00 [DBG] Bearer token found in header
+2019-07-08 11:40:58.275 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:40:58.275 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:40:58.287 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 11:40:58.287 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562578616,"exp":1562582216,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b","auth_time":1562578616,"idp":"local","given_name":"User","family_name":"Super","email":"mgouzee@klanik.com","OptIn":"","UserType":"Unknown","role":"SuperUser","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 11:40:58.287 +02:00 [DBG] Creating userinfo response
+2019-07-08 11:40:58.287 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:40:58.287 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:40:58.287 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 11:40:58.287 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:40:58.324 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType role
+2019-07-08 11:40:58.324 +02:00 [DBG] End userinfo request
+2019-07-08 11:51:07.491 +02:00 [DBG] CORS request made for path: /api/Account/OptIn/ from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 11:51:09.258 +02:00 [DBG] CORS request made for path: /api/Account/users from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 11:51:09.325 +02:00 [DBG] CORS request made for path: /api/account/roles from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 11:51:13.313 +02:00 [DBG] CORS request made for path: /api/account/SetRole/745bfc80-fe8b-4fbc-9881-d0d056765f82/Recruteur from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 11:51:26.782 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 11:51:26.783 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 11:51:26.783 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 11:51:26.783 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 11:51:26.783 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 11:51:26.783 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 11:51:26.783 +02:00 [DBG] Start userinfo request
+2019-07-08 11:51:26.783 +02:00 [DBG] Bearer token found in header
+2019-07-08 11:51:26.787 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:51:26.787 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 11:51:26.795 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 11:51:26.795 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562578616,"exp":1562582216,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b","auth_time":1562578616,"idp":"local","given_name":"User","family_name":"Super","email":"mgouzee@klanik.com","OptIn":"","UserType":"Unknown","role":"SuperUser","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 11:51:26.795 +02:00 [DBG] Creating userinfo response
+2019-07-08 11:51:26.796 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:51:26.796 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:51:26.796 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 11:51:26.796 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 11:51:26.821 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType role
+2019-07-08 11:51:26.821 +02:00 [DBG] End userinfo request
+2019-07-08 13:58:33.737 +02:00 [ERR] An error occurred using the connection to database 'Identity' on server 'localhost'.
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   at MySqlConnector.Core.ServerSession.ConnectAsync(ConnectionSettings cs, ILoadBalancer loadBalancer, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ServerSession.cs:line 326
+   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ConnectionPool.cs:line 112
+   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ConnectionPool.cs:line 141
+   at MySql.Data.MySqlClient.MySqlConnection.CreateSessionAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlConnection.cs:line 507
+   at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlConnection.cs:line 232
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnectionAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+2019-07-08 13:58:33.909 +02:00 [ERR] An exception occurred while iterating over the results of a query for context type 'IdentityServer.KlanikIdentityContext'.
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   at MySqlConnector.Core.ServerSession.ConnectAsync(ConnectionSettings cs, ILoadBalancer loadBalancer, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ServerSession.cs:line 326
+   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ConnectionPool.cs:line 112
+   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ConnectionPool.cs:line 141
+   at MySql.Data.MySqlClient.MySqlConnection.CreateSessionAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlConnection.cs:line 507
+   at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlConnection.cs:line 232
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnectionAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.BufferlessMoveNext(DbContext _, Boolean buffer, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.FirstOrDefault_[TSource](IAsyncEnumerable`1 source, CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\First.cs:line 144
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.TaskResultAsyncEnumerable`1.Enumerator.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.SelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\Select.cs:line 106
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\AsyncIterator.cs:line 98
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   at MySqlConnector.Core.ServerSession.ConnectAsync(ConnectionSettings cs, ILoadBalancer loadBalancer, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ServerSession.cs:line 326
+   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ConnectionPool.cs:line 112
+   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ConnectionPool.cs:line 141
+   at MySql.Data.MySqlClient.MySqlConnection.CreateSessionAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlConnection.cs:line 507
+   at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlConnection.cs:line 232
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnectionAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.BufferlessMoveNext(DbContext _, Boolean buffer, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.FirstOrDefault_[TSource](IAsyncEnumerable`1 source, CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\First.cs:line 144
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.TaskResultAsyncEnumerable`1.Enumerator.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.SelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\Select.cs:line 106
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\AsyncIterator.cs:line 98
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
+2019-07-08 13:58:33.917 +02:00 [ERR] An exception occurred while iterating over the results of a query for context type 'IdentityServer.KlanikIdentityContext'.
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   at MySqlConnector.Core.ServerSession.ConnectAsync(ConnectionSettings cs, ILoadBalancer loadBalancer, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ServerSession.cs:line 326
+   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ConnectionPool.cs:line 112
+   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ConnectionPool.cs:line 141
+   at MySql.Data.MySqlClient.MySqlConnection.CreateSessionAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlConnection.cs:line 507
+   at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlConnection.cs:line 232
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnectionAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.BufferlessMoveNext(DbContext _, Boolean buffer, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.FirstOrDefault_[TSource](IAsyncEnumerable`1 source, CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\First.cs:line 144
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.TaskResultAsyncEnumerable`1.Enumerator.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.SelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\Select.cs:line 106
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\AsyncIterator.cs:line 98
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteSingletonAsyncQuery[TResult](QueryContext queryContext, Func`2 compiledQuery, IDiagnosticsLogger`1 logger, Type contextType)
+MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   at MySqlConnector.Core.ServerSession.ConnectAsync(ConnectionSettings cs, ILoadBalancer loadBalancer, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ServerSession.cs:line 326
+   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ConnectionPool.cs:line 112
+   at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\Core\ConnectionPool.cs:line 141
+   at MySql.Data.MySqlClient.MySqlConnection.CreateSessionAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlConnection.cs:line 507
+   at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\projects\mysqlconnector\src\MySqlConnector\MySql.Data.MySqlClient\MySqlConnection.cs:line 232
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnectionAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.BufferlessMoveNext(DbContext _, Boolean buffer, CancellationToken cancellationToken)
+   at Pomelo.EntityFrameworkCore.MySql.Storage.Internal.MySqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncQueryingEnumerable`1.AsyncEnumerator.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.FirstOrDefault_[TSource](IAsyncEnumerable`1 source, CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\First.cs:line 144
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.TaskResultAsyncEnumerable`1.Enumerator.MoveNext(CancellationToken cancellationToken)
+   at System.Linq.AsyncEnumerable.SelectEnumerableAsyncIterator`2.MoveNextCore(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\Select.cs:line 106
+   at System.Linq.AsyncEnumerable.AsyncIterator`1.MoveNext(CancellationToken cancellationToken) in D:\a\1\s\Ix.NET\Source\System.Interactive.Async\AsyncIterator.cs:line 98
+   at Microsoft.EntityFrameworkCore.Query.Internal.AsyncLinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteSingletonAsyncQuery[TResult](QueryContext queryContext, Func`2 compiledQuery, IDiagnosticsLogger`1 logger, Type contextType)
+2019-07-08 14:37:08.521 +02:00 [WRN] User 47dee7ce-9a4c-4ae2-bc2b-c9c7ad6b3fac is already in role Admin.
+2019-07-08 14:37:08.713 +02:00 [WRN] User b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b is already in role SuperUser.
+2019-07-08 14:37:08.876 +02:00 [INF] Starting IdentityServer4 version 2.4.0.0
+2019-07-08 14:37:08.887 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2019-07-08 14:37:08.894 +02:00 [INF] Using the default authentication scheme Identity.Application for IdentityServer
+2019-07-08 14:37:08.894 +02:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for authentication
+2019-07-08 14:37:08.894 +02:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-in
+2019-07-08 14:37:08.894 +02:00 [DBG] Using Identity.External as default ASP.NET Core scheme for sign-out
+2019-07-08 14:37:08.894 +02:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for challenge
+2019-07-08 14:37:08.894 +02:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for forbid
+2019-07-08 14:37:09.247 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 14:37:09.251 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 14:37:09.251 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 14:37:09.264 +02:00 [DBG] Login Url: /Account/Login
+2019-07-08 14:37:09.264 +02:00 [DBG] Login Return Url Parameter: ReturnUrl
+2019-07-08 14:37:09.264 +02:00 [DBG] Logout Url: /Account/Logout
+2019-07-08 14:37:09.264 +02:00 [DBG] ConsentUrl Url: /consent
+2019-07-08 14:37:09.264 +02:00 [DBG] Consent Return Url Parameter: returnUrl
+2019-07-08 14:37:09.264 +02:00 [DBG] Error Url: /home/error
+2019-07-08 14:37:09.264 +02:00 [DBG] Error Id Parameter: errorId
+2019-07-08 14:37:09.286 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 14:37:09.291 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 14:37:09.291 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 14:37:09.297 +02:00 [DBG] Start userinfo request
+2019-07-08 14:37:09.300 +02:00 [DBG] Bearer token found in header
+2019-07-08 14:37:09.388 +02:00 [INF] JWT token validation error: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '[PII is hidden]', Current time: '[PII is hidden]'.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo: '[PII is hidden]', Current time: '[PII is hidden]'.
+   at Microsoft.IdentityModel.Tokens.Validators.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(JwtSecurityToken jwtToken, TokenValidationParameters validationParameters)
+   at System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateToken(String token, TokenValidationParameters validationParameters, SecurityToken& validatedToken)
+   at IdentityServer4.Validation.TokenValidator.ValidateJwtAsync(String jwt, String audience, IEnumerable`1 validationKeys, Boolean validateLifetime) in C:\local\identity\server4\IdentityServer4\src\IdentityServer4\src\Validation\Default\TokenValidator.cs:line 287
+2019-07-08 14:37:16.673 +02:00 [DBG] CORS request made for path: /connect/token from origin: http://localhost:8080
+2019-07-08 14:37:16.673 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 14:37:16.673 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 14:37:16.674 +02:00 [DBG] Request path /connect/token matched to endpoint type Token
+2019-07-08 14:37:16.681 +02:00 [DBG] Endpoint enabled: Token, successfully created handler: IdentityServer4.Endpoints.TokenEndpoint
+2019-07-08 14:37:16.681 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2019-07-08 14:37:16.688 +02:00 [DBG] Start token request.
+2019-07-08 14:37:16.693 +02:00 [DBG] Start client validation
+2019-07-08 14:37:16.697 +02:00 [DBG] Start parsing Basic Authentication secret
+2019-07-08 14:37:16.700 +02:00 [DBG] Start parsing for secret in post body
+2019-07-08 14:37:16.729 +02:00 [DBG] Parser found secret: PostBodySecretParser
+2019-07-08 14:37:16.729 +02:00 [DBG] Secret id found: ro.VueJs
+2019-07-08 14:37:16.740 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 14:37:16.748 +02:00 [DBG] Secret validator success: HashedSharedSecretValidator
+2019-07-08 14:37:16.748 +02:00 [DBG] Client validation success
+2019-07-08 14:37:16.755 +02:00 [DBG] Start token request validation
+2019-07-08 14:37:16.767 +02:00 [DBG] Start resource owner password token request validation
+2019-07-08 14:37:16.854 +02:00 [INF] Credentials validated for username: superuser
+2019-07-08 14:37:16.859 +02:00 [DBG] Resource owner password token request validation success.
+2019-07-08 14:37:16.870 +02:00 [INF] Token request validation success
+{"ClientId":"ro.VueJs","ClientName":"Klanik front end","GrantType":"password","Scopes":"api1 openid profile","AuthorizationCode":null,"RefreshToken":null,"UserName":"superuser","AuthenticationContextReferenceClasses":null,"Tenant":null,"IdP":null,"Raw":{"grant_type":"password","client_id":"ro.VueJs","client_secret":"***REDACTED***","username":"superuser","password":"***REDACTED***","scope":"openid profile api1"},"$type":"TokenRequestValidationLog"}
+2019-07-08 14:37:16.893 +02:00 [DBG] Getting claims for access token for client: ro.VueJs
+2019-07-08 14:37:16.894 +02:00 [DBG] Getting claims for access token for subject: b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b
+2019-07-08 14:37:17.047 +02:00 [DBG] Token request success.
+2019-07-08 14:37:17.083 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 14:37:17.083 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 14:37:17.083 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 14:37:17.083 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 14:37:17.084 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 14:37:17.084 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 14:37:17.084 +02:00 [DBG] Start userinfo request
+2019-07-08 14:37:17.084 +02:00 [DBG] Bearer token found in header
+2019-07-08 14:37:17.087 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 14:37:17.089 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 14:37:17.103 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 14:37:17.110 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562589437,"exp":1562593037,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b","auth_time":1562589436,"idp":"local","given_name":"User","family_name":"Super","email":"mgouzee@klanik.com","OptIn":"True","UserType":"Unknown","role":"SuperUser","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 14:37:17.121 +02:00 [DBG] Creating userinfo response
+2019-07-08 14:37:17.125 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 14:37:17.127 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 14:37:17.130 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 14:37:17.130 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 14:37:17.161 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType role
+2019-07-08 14:37:17.162 +02:00 [DBG] End userinfo request
+2019-07-08 14:37:24.581 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2019-07-08 14:37:24.582 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2019-07-08 14:37:24.582 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2019-07-08 14:37:24.585 +02:00 [DBG] Start discovery request
+2019-07-08 14:37:24.654 +02:00 [DBG] Request path /.well-known/openid-configuration/jwks matched to endpoint type Discovery
+2019-07-08 14:37:24.656 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryKeyEndpoint
+2019-07-08 14:37:24.656 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2019-07-08 14:37:24.661 +02:00 [DBG] Start key discovery request
+2019-07-08 14:38:39.026 +02:00 [DBG] CORS request made for path: /api/Account/users from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 14:38:39.192 +02:00 [DBG] CORS request made for path: /api/account/roles from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 15:03:19.661 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 15:03:19.661 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 15:03:19.661 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 15:03:19.661 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 15:03:19.662 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 15:03:19.662 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 15:03:19.662 +02:00 [DBG] Start userinfo request
+2019-07-08 15:03:19.662 +02:00 [DBG] Bearer token found in header
+2019-07-08 15:03:19.665 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 15:03:19.665 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 15:03:19.714 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 15:03:19.714 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562589437,"exp":1562593037,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b","auth_time":1562589436,"idp":"local","given_name":"User","family_name":"Super","email":"mgouzee@klanik.com","OptIn":"True","UserType":"Unknown","role":"SuperUser","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 15:03:19.714 +02:00 [DBG] Creating userinfo response
+2019-07-08 15:03:19.714 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 15:03:19.714 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 15:03:19.715 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 15:03:19.715 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 15:03:19.739 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType role
+2019-07-08 15:03:19.739 +02:00 [DBG] End userinfo request
+2019-07-08 15:20:38.985 +02:00 [DBG] CORS request made for path: /api/Account/users from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 15:20:39.170 +02:00 [DBG] CORS request made for path: /api/account/roles from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 15:32:11.130 +02:00 [DBG] CORS request made for path: /api/Account/users from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 15:32:11.346 +02:00 [DBG] CORS request made for path: /api/account/roles from origin: http://localhost:8080 but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2019-07-08 15:36:08.252 +02:00 [DBG] CORS request made for path: /connect/userinfo from origin: http://localhost:8080
+2019-07-08 15:36:08.252 +02:00 [DBG] Client list checked and origin: http://localhost:8080 is allowed
+2019-07-08 15:36:08.252 +02:00 [DBG] CorsPolicyService allowed origin: http://localhost:8080
+2019-07-08 15:36:08.252 +02:00 [DBG] Request path /connect/userinfo matched to endpoint type Userinfo
+2019-07-08 15:36:08.253 +02:00 [DBG] Endpoint enabled: Userinfo, successfully created handler: IdentityServer4.Endpoints.UserInfoEndpoint
+2019-07-08 15:36:08.253 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.UserInfoEndpoint for /connect/userinfo
+2019-07-08 15:36:08.253 +02:00 [DBG] Start userinfo request
+2019-07-08 15:36:08.253 +02:00 [DBG] Bearer token found in header
+2019-07-08 15:36:08.257 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 15:36:08.257 +02:00 [DBG] client configuration validation for client ro.VueJs succeeded.
+2019-07-08 15:36:08.293 +02:00 [DBG] Calling into custom token validator: IdentityServer4.Validation.DefaultCustomTokenValidator
+2019-07-08 15:36:08.293 +02:00 [DBG] Token validation success
+{"ClientId":null,"ClientName":null,"ValidateLifetime":true,"AccessTokenType":"Jwt","ExpectedScope":"openid","TokenHandle":null,"JwtId":null,"Claims":{"nbf":1562589437,"exp":1562593037,"iss":"https://localhost:44363","aud":["https://localhost:44363/resources","api1"],"client_id":"ro.VueJs","sub":"b8cddf8f-b372-4d8a-b952-f3b4f5f00f8b","auth_time":1562589436,"idp":"local","given_name":"User","family_name":"Super","email":"mgouzee@klanik.com","OptIn":"True","UserType":"Unknown","role":"SuperUser","scope":["openid","profile","api1"],"amr":"pwd"},"$type":"TokenValidationLog"}
+2019-07-08 15:36:08.293 +02:00 [DBG] Creating userinfo response
+2019-07-08 15:36:08.293 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 15:36:08.293 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 15:36:08.293 +02:00 [DBG] Requested claim types: sub name family_name given_name middle_name nickname preferred_username profile picture website gender birthdate zoneinfo locale updated_at
+2019-07-08 15:36:08.293 +02:00 [DBG] Scopes in access token: openid profile api1
+2019-07-08 15:36:08.328 +02:00 [INF] Profile service returned the following claim types: sub preferred_username name given_name family_name email OptIn UserType role
+2019-07-08 15:36:08.328 +02:00 [DBG] End userinfo request

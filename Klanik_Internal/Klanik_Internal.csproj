@@ -31,6 +31,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WordProcessor\WordProcessor\WordProcessor.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="DocumentFormat.OpenXml">
       <HintPath>..\..\..\Tools\WordProcessor\WordProcessor\bin\Debug\netcoreapp2.2\publish\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
@@ -42,9 +46,6 @@
     </Reference>
     <Reference Include="System.IO.Packaging">
       <HintPath>..\..\..\Tools\WordProcessor\WordProcessor\bin\Debug\netcoreapp2.2\publish\System.IO.Packaging.dll</HintPath>
-    </Reference>
-    <Reference Include="WordProcessor">
-      <HintPath>..\..\..\Tools\WordProcessor\WordProcessor\bin\Debug\netcoreapp2.2\publish\WordProcessor.dll</HintPath>
     </Reference>
   </ItemGroup>
 

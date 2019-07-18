@@ -1453,6 +1453,8 @@ namespace WordProcessor.Generators {
             #endregion
 
             Run run102 = new Run();
+            Paragraph ClearencesPara = new Paragraph() { RsidParagraphAddition = "00985748", RsidParagraphProperties = "00132EE5", RsidRunAdditionDefault = "00985748" };
+            Paragraph ClearencesParaText = new Paragraph() { RsidParagraphAddition = "00985748", RsidParagraphProperties = "00132EE5", RsidRunAdditionDefault = "00985748" };
 
             RunProperties runProperties102 = new RunProperties();
             NoProof noProof3 = new NoProof();
@@ -1612,8 +1614,29 @@ namespace WordProcessor.Generators {
 
             run102.Append(runProperties102);
             run102.Append(drawing3);
+            //Text
 
+            Run runClearences = new Run() { RsidRunAddition = "002F4CE5" };
+            runClearences.Append(new Break());
+            RunProperties runClearencesProps = new RunProperties();
+            RunFonts runClearencesFonts = new RunFonts() { Ascii = "Arial", HighAnsi = "Arial", EastAsia = "Arial Unicode MS", ComplexScript = "Arial" };
+            FontSize runClearencesFontsSize = new FontSize() { Val = "20" };
+            FontSizeComplexScript CleerancefontSizeComplexScript2 = new FontSizeComplexScript() { Val = "20" };
 
+            runClearencesProps.Append(runClearencesFonts);
+            runClearencesProps.Append(runClearencesFontsSize);
+            runClearencesProps.Append(CleerancefontSizeComplexScript2);
+            Text text1 = new Text();
+            foreach (var Certs in _Konsultant.OwnedCertificate)
+            {
+                text1.Text += $"{Certs.Certificate.Name} ";
+            }
+
+            runClearences.Append(runClearencesProps);
+            runClearences.Append(text1);
+
+            ClearencesPara.Append(run102);
+            ClearencesParaText.Append(runClearences);
             Paragraph BreakPage = new Paragraph(new Run(new Break() { Type = BreakValues.Page }));
             #region Draw Summary Exp Pro
             Paragraph prDrawSummaryExpPro = new Paragraph() { RsidParagraphAddition = "003A795A", RsidParagraphProperties = "00C1170B", RsidRunAdditionDefault = "00985748" };
@@ -2884,8 +2907,10 @@ namespace WordProcessor.Generators {
             //body1.Append(paragraph36);
             if (_Konsultant.PersonalEducation.Any())
                 body1.Append(EducationTitle);
-            //body1.Append(paragraph38);
+            body1.Append(paragraph38);
             body1.Append(paragraph39);
+            body1.Append(ClearencesPara);
+            body1.Append(ClearencesParaText);
             //body1.Append(paragraph40);
             //body1.Append(paragraph41);
             //body1.Append(paragraph42);
