@@ -23,6 +23,7 @@ namespace WordProcessor.Repositories {
                        .ThenInclude(p => p.TechnicalEnvironment)
                    .Include(k => k.ProfessionalReference)
                        .ThenInclude(p => p.Contact)
+                   .Include(k => k.Recruiter)
                    .FirstOrDefault(x => x.Id == id);
             }
         }

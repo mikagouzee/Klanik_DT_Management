@@ -489,32 +489,16 @@ namespace WordProcessor.Generators {
             runProperties166.Append(color87);
             runProperties166.Append(languages153);
             Text text121 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text121.Text = "Contact KLANIK Name/Last Name/ ";
-
+            text121.Text = $"Contact KLANIK {_Konsultant?.Recruiter?.Name} {_Konsultant?.Recruiter?.Surname}";
             run168.Append(runProperties166);
             run168.Append(text121);
             ProofError proofError41 = new ProofError() { Type = ProofingErrorValues.SpellStart };
 
-            Run run169 = new Run() { RsidRunProperties = "00293AA1" };
-
-            RunProperties runProperties167 = new RunProperties();
-            Color color88 = new Color() { Val = "FFFFFF", ThemeColor = ThemeColorValues.Background1 };
-            Languages languages154 = new Languages() { Val = "nl-BE" };
-
-            runProperties167.Append(color88);
-            runProperties167.Append(languages154);
-            Text text122 = new Text();
-            text122.Text = "number";
-
-            run169.Append(runProperties167);
-            run169.Append(text122);
-            ProofError proofError42 = new ProofError() { Type = ProofingErrorValues.SpellEnd };
 
             paragraph93.Append(paragraphProperties87);
             paragraph93.Append(run168);
             paragraph93.Append(proofError41);
-            paragraph93.Append(run169);
-            paragraph93.Append(proofError42);
+
 
             Paragraph paragraph94 = new Paragraph() { RsidParagraphMarkRevision = "00293AA1", RsidParagraphAddition = "00B95E8A", RsidRunAdditionDefault = "00B95E8A" };
 
@@ -623,7 +607,8 @@ namespace WordProcessor.Generators {
             runProperties168.Append(color91);
             runProperties168.Append(languages157);
             Text text123 = new Text();
-            text123.Text = "Contact KLANIK Name/Last Name/ number";
+
+            text123.Text = $"Contact KLANIK {_Konsultant?.Recruiter?.Name} {_Konsultant?.Recruiter?.Surname}";
 
             run170.Append(runProperties168);
             run170.Append(text123);
@@ -3859,32 +3844,16 @@ namespace WordProcessor.Generators {
             runProperties210.Append(color100);
             runProperties210.Append(languages192);
             Text text158 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text158.Text = "Contact KLANIK Name/Last Name/ ";
+            text158.Text = $"Contact KLANIK {_Konsultant?.Recruiter?.Name} {_Konsultant?.Recruiter?.Surname}";
 
             run218.Append(runProperties210);
             run218.Append(text158);
             ProofError proofError65 = new ProofError() { Type = ProofingErrorValues.SpellStart };
 
-            Run run219 = new Run() { RsidRunProperties = "00293AA1" };
-
-            RunProperties runProperties211 = new RunProperties();
-            Color color101 = new Color() { Val = "FFFFFF", ThemeColor = ThemeColorValues.Background1 };
-            Languages languages193 = new Languages() { Val = "nl-BE" };
-
-            runProperties211.Append(color101);
-            runProperties211.Append(languages193);
-            Text text159 = new Text();
-            text159.Text = "number";
-
-            run219.Append(runProperties211);
-            run219.Append(text159);
-            ProofError proofError66 = new ProofError() { Type = ProofingErrorValues.SpellEnd };
 
             paragraph110.Append(paragraphProperties104);
             paragraph110.Append(run218);
             paragraph110.Append(proofError65);
-            paragraph110.Append(run219);
-            paragraph110.Append(proofError66);
 
             Paragraph paragraph111 = new Paragraph() { RsidParagraphMarkRevision = "00293AA1", RsidParagraphAddition = "00B95E8A", RsidParagraphProperties = "00B95E8A", RsidRunAdditionDefault = "00B95E8A" };
 
@@ -3994,7 +3963,7 @@ namespace WordProcessor.Generators {
             runProperties212.Append(color104);
             runProperties212.Append(languages196);
             Text text160 = new Text();
-            text160.Text = "Contact KLANIK Name/Last Name/ number";
+            text160.Text = $"Contact KLANIK {_Konsultant?.Recruiter?.Name} {_Konsultant?.Recruiter?.Surname}";
 
             run220.Append(runProperties212);
             run220.Append(text160);

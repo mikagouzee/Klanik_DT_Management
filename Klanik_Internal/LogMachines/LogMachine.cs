@@ -1,14 +1,8 @@
-﻿using Microsoft.Extensions.FileProviders;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace Klanik_Internal.LogMachines
-{
-    public class LogMachine : ILogMachine
-    {
+namespace Klanik_Internal.LogMachines {
+    public class LogMachine : ILogMachine {
         private string logFile;
 
         public LogMachine()
@@ -36,11 +30,11 @@ namespace Klanik_Internal.LogMachines
 
         public void Log(string content)
         {
-            using (StreamWriter file = new StreamWriter(logFile, true))
-            {
-                file.WriteLine(DateTime.Now + " : " + content);
-                //file.WriteLine(Environment.NewLine);             
-            }
+            //using (StreamWriter file = new StreamWriter(logFile, true))
+            //{
+            //    file.WriteLine(DateTime.Now + " : " + content);
+            //    //file.WriteLine(Environment.NewLine);             
+            //}
 
         }
     }

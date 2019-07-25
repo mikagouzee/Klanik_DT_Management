@@ -98,6 +98,8 @@ namespace Klanik_Internal.Repository {
             using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 KlanikContext _context = _provider.GetService<KlanikContext>();
+                _context.Entry(toEdit).State = EntityState.Modified;
+
                 foreach (var comp in toEdit.Competences)
                 {
                     CreateOrUpdateCompetence(_context, comp);

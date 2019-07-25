@@ -90,7 +90,7 @@ namespace Klanik_Internal.Controllers {
             return Ok(errorMessage);
         }
 
-        public static bool IsKonsultantAlreadyUsed(Konsultant konsultant)
+        private static bool IsKonsultantAlreadyUsed(Konsultant konsultant)
         {
             bool AlreadyInRecruiter = false;
             if (konsultant.Recruiter != null)

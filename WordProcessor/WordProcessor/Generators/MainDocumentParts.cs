@@ -2856,6 +2856,7 @@ namespace WordProcessor.Generators {
 
             paragraphProperties83.Append(paragraphStyleId26);
             paragraphProperties83.Append(numberingProperties4);
+            paragraph88.Append(paragraphProperties83);
 
             foreach (var Refs in _Konsultant.ProfessionalReference)
             {
@@ -2865,7 +2866,6 @@ namespace WordProcessor.Generators {
 
                 run160.Append(text118);
 
-                paragraph88.Append(paragraphProperties83);
                 paragraph88.Append(run160);
             }
 
