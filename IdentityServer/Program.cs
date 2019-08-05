@@ -6,10 +6,8 @@ using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
 
-namespace IdentityServer
-{
-    public class Program
-    {
+namespace IdentityServer {
+    public class Program {
         public static void Main(string[] args)
         {
             Console.Title = "IdentityServer4";
@@ -20,7 +18,7 @@ namespace IdentityServer
                 .MinimumLevel.Override("System", LogEventLevel.Warning)
                 .MinimumLevel.Override("Microsoft.AspNetCore.Authentication", LogEventLevel.Information)
                 .Enrich.FromLogContext()
-                .WriteTo.File(@"C:\Users\Mika\Desktop\GitKlanik\Klanik_DT_Management\Klanik_DT\Klanik_Internal\IdentityServer\bin\Debug\netcoreapp2.2\logFolder\Serilogs.txt")
+                .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Literate)
                 .CreateLogger();
 
             CreateWebHostBuilder(args)
@@ -32,6 +30,7 @@ namespace IdentityServer
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:54433/")
                 .UseSerilog();
     }
 }

@@ -18,7 +18,6 @@ namespace IdentityServer.Repository {
             using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 KlanikIdentityContext context = _provider.GetService<KlanikIdentityContext>();
-
                 return context.Users.Select(x => new ProfileViewModel(x));
             }
         }

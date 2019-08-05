@@ -1,12 +1,9 @@
 ﻿using IdentityServer.Models;
-using IdentityServer.Tools.ContextInitializer;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdentityServer
-{
-    internal class KlanikIdentityContext : IdentityDbContext<ApplicationUser>
-    {
+namespace IdentityServer {
+    internal class KlanikIdentityContext : IdentityDbContext<ApplicationUser> {
         public KlanikIdentityContext(DbContextOptions<KlanikIdentityContext> options)
              : base(options)
         {
