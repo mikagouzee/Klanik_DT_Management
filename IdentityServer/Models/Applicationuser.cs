@@ -7,5 +7,6 @@ namespace IdentityServer.Models {
         public string LastName { get; set; }
         public Boolean? OptIn { get; set; }
         public UserType UserType { get; set; }
+        public string SixGram { get; set; }
     }
 }

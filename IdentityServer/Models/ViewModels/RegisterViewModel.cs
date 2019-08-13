@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace IdentityServer.Models.ViewModels
-{
-    public class RegisterViewModel
-    {
+namespace IdentityServer.Models.ViewModels {
+    public class RegisterViewModel {
         [Required]
         [StringLength(50, ErrorMessage = "The {0} must be at least {2}, at max {1} characters long and unique.", MinimumLength = 2)]
         [Display(Name = "Username")]
@@ -38,5 +32,7 @@ namespace IdentityServer.Models.ViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public string SixGram { get; set; }
     }
 }
