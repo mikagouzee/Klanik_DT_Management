@@ -3,12 +3,9 @@ using Klanik_Internal.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace Klanik_Internal.Services
-{
-    public class CompetenceService : IService<Competence>
-    {
+namespace Klanik_Internal.Services {
+    public class CompetenceService : IService<Competence> {
         private readonly IRepository<Competence> _repo;
 
         public CompetenceService(IRepository<Competence> repo)
@@ -35,9 +32,12 @@ namespace Klanik_Internal.Services
 
         public IEnumerable<Competence> GetAll()
         {
-            throw new NotImplementedException();
+            return _repo.GetAll();
         }
-
+        public IEnumerable<Competence> GetQuerryable(string query)
+        {
+            return _repo.GetAll().Where(c => c.Name.StartsWith(query));
+        }
 
         public void Update(Competence toEdit)
         {
