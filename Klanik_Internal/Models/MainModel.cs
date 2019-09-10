@@ -35,6 +35,7 @@ namespace Klanik_Internal.Models {
         public string Function { get; set; }
         public DateTime Availability { get; set; }
 
+        public virtual List<MobilityKonsultant> Mobilites { get; set; } = new List<MobilityKonsultant>();
         public virtual List<OwnedCompetences> Competences { get; set; } = new List<OwnedCompetences>();
         public virtual List<PersonalEducation> Educations { get; set; } = new List<PersonalEducation>();
         public virtual List<OwnedCertificate> Certificates { get; set; } = new List<OwnedCertificate>();
@@ -147,12 +148,27 @@ namespace Klanik_Internal.Models {
         Bilingual = 5
     }
 
+    public class Contry : KlanikEntity {
+        public string Name { get; set; }
+    }
+    //Business
+    public class BusinessUnit : KlanikEntity {
+        public string Name { get; set; }
+        public Contry Contry { get; set; }
+    }
     //mapped entities
+    public class MobilityKonsultant {
+        public Guid KonsultantId { get; set; }
+        public Guid BusinessUnitId { get; set; }
+        public virtual BusinessUnit BU { get; set; }
+
+    }
+
+
     public class OwnedCompetences {
         public Guid CompetenceId { get; set; }
         public Guid KonsultantId { get; set; }
         public Rating Rating { get; set; }
-
         public bool IsRelevant { get; set; } = true;
         public virtual Competence Competence { get; set; }
     }

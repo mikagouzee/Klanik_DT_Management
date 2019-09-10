@@ -78,7 +78,6 @@ namespace IdentityServer {
             //    ForwardedHeaders = ForwardedHeaders.All
             //});
 
-
             app.UseIdentityServer();
             app.UseAuthentication();
 

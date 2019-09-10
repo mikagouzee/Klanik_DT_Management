@@ -8,16 +8,16 @@ namespace Klanik_Internal.Models.ViewModels {
         public string Surname { get; set; }
         public string Function { get; set; }
         public DateTime Availability { get; set; }
-
+        public List<MobilityKonsultantVm> Mobilites { get; set; }
         public List<CompetenceViewModel> Competences { get; set; }
         public List<LanguageViewModel> Languages { get; set; }
         public List<EducationViewModel> Educations { get; set; }
         public List<CertificateViewModel> Certificates { get; set; }
         public List<ProfessionalExperienceViewModel> ProfessionalExperiences { get; set; }
         public List<ProfessionalReferenceViewModel> ProfessionalReferences { get; set; }
-
         public KonsultantCreationModel()
         {
+            Mobilites = new List<MobilityKonsultantVm>();
             Competences = new List<CompetenceViewModel>();
             Languages = new List<LanguageViewModel>();
             Educations = new List<EducationViewModel>();
@@ -27,6 +27,10 @@ namespace Klanik_Internal.Models.ViewModels {
         }
     }
 
+    public class MobilityKonsultantVm {
+        public string name { get; set; }
+        public Guid id { get; set; }
+    }
     public class CompetenceViewModel {
         public string Id { get; set; }
 

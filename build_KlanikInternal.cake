@@ -8,16 +8,16 @@ var target = Argument("target", "Clean");
 
 var configuration = Argument("configuration", "Release");
 
-var framework = Argument("framework", "netcoreapp2.0");
+var framework = Argument("framework", "netcoreapp2.2");
 
-var runtime = Argument("runtime", "win10-arm");
+var runtime = Argument("runtime", "win10-x64");
 
 var destinationIp = Argument("DestinationIp", ""); //TODO : CHANGE DEFAULT DESTINATION IP
 
 var destinationDirectory = Argument("destinationDirectory", @"c$\ConsoleApps\Test"); //TODO : CHANGE DEFAULT DESTINATION DIRECTORY
 
 var username = Argument("username", "ubuntu"); //not needed for windows, so default is ubuntu
-var executableName = Argument("executableName", "Klanik_Internal")
+var executableName = Argument("executableName", "Klanik_Internal");
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -50,19 +50,19 @@ Task("Restore")
     .IsDependentOn("Clean")
     .Does(() => {
         DotNetCoreRestore(projectFile);
-})
+});
 
 Task("Build")
     .IsDependentOn("Restore")
     .Does(() => {
         var settings = new DotNetCoreBuildSettings{
             Framework = framework,
-            configuration = configuration,
+            Configuration = configuration,
             OutputDirectory = "Klanik_Internal/bin/"
         };
 
         DotNetCoreBuild(projectFile, settings);
-})
+});
 
 Task("Publish")
     .IsDependentOn("Build")
@@ -75,7 +75,7 @@ Task("Publish")
         };
 
         DotNetCorePublish(projectFile, settings);
-})
+});
 
 Task("Deploy")
     .IsDependentOn("Publish")
@@ -102,7 +102,7 @@ Task("Deploy")
         }
 
        
-})
+});
 
 
 //Previous version

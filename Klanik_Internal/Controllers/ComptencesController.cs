@@ -24,5 +24,25 @@ namespace Klanik_Internal.Controllers {
             var results = _service.GetAll().Where(c => c.Name.StartsWith(query, StringComparison.InvariantCultureIgnoreCase)).ToList();
             return Ok(results);
         }
+        [HttpPost]
+        public IActionResult AddCompetence([FromBody]CompModel comp)
+        {
+            Competence nComp = new Competence { Name = comp.comp, Id = Guid.NewGuid() };
+            _service.Create(nComp);
+            return Ok(_service.GetAll());
+        }
+
+        [HttpDelete("{comp}")]
+        public IActionResult RemoveCompetence(Guid comp)
+        {
+            Competence toDel = _service.GetById(comp);
+            _service.Delete(toDel);
+            return Ok(_service.GetAll());
+        }
+    }
+
+    public class CompModel {
+        public string comp { get; set; }
+
     }
 }

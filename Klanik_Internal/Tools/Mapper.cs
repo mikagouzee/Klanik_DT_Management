@@ -2,15 +2,10 @@
 using Klanik_Internal.Models.ViewModels;
 using Klanik_Internal.Services;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace Klanik_Internal.Tools
-{
-    public class Mapper : IMapper
-    {
+namespace Klanik_Internal.Tools {
+    public class Mapper : IMapper {
         private readonly IService<Competence> _skillService;
         private readonly IService<Language> _langService;
         private readonly IService<Certificate> _certifService;
@@ -18,7 +13,7 @@ namespace Klanik_Internal.Tools
         private readonly IService<TechnicalEnvironment> _techService;
         private readonly IService<ProfessionalExperience> _expService;
         private readonly IService<Accomplishment> _accomplishmentService;
-
+        private readonly IService<BusinessUnit> _busServices;
         public readonly IService<Konsultant> _konsultantService;
 
         public Mapper(IService<Competence> skillService,
@@ -28,7 +23,8 @@ namespace Klanik_Internal.Tools
                         IService<Education> eduService,
                         IService<ProfessionalExperience> expService,
                         IService<Konsultant> konsultantService,
-                        IService<Accomplishment> accomplishmentService)
+                        IService<Accomplishment> accomplishmentService,
+                        IService<BusinessUnit> busService)
         {
             _skillService = skillService;
             _langService = langService;
@@ -38,6 +34,7 @@ namespace Klanik_Internal.Tools
             _expService = expService;
             _konsultantService = konsultantService;
             _accomplishmentService = accomplishmentService;
+            _busServices = busService;
         }
 
         public Konsultant toKonsultant(KonsultantCreationModel toCreate)
@@ -55,12 +52,14 @@ namespace Klanik_Internal.Tools
             {
                 SetCompetence(newConsultant, comp);
             }
-
             foreach (var lang in toCreate.Languages)
             {
                 SetLanguage(newConsultant, lang);
             }
-
+            foreach (var Mob in toCreate.Mobilites)
+            {
+                SetMobilities(newConsultant, Mob);
+            }
             foreach (var edu in toCreate.Educations)
             {
                 SetEducation(newConsultant, edu);
@@ -84,6 +83,13 @@ namespace Klanik_Internal.Tools
             return newConsultant;
         }
 
+        private void SetMobilities(Konsultant newConsultant, MobilityKonsultantVm mob)
+        {
+            var bu = _busServices.GetById((mob.id));
+            MobilityKonsultant mobility = new MobilityKonsultant { BU = bu, BusinessUnitId = bu.Id, KonsultantId = newConsultant.Id };
+            newConsultant.Mobilites.Add(mobility);
+        }
+
         public KonsultantCreationModel toViewModel(Konsultant source)
         {
             if (source == null)
@@ -97,7 +103,6 @@ namespace Klanik_Internal.Tools
                 Function = source.Function,
                 Availability = source.Availability.Date,
             };
-
 
             foreach (var comp in source.Competences)
             {
@@ -172,7 +177,7 @@ namespace Klanik_Internal.Tools
                 {
                     var accomplished = new AccomplishmentViewModel
                     {
-                        Id  = acc.Id.ToString(),
+                        Id = acc.Id.ToString(),
                         Title = acc.Title,
                         IsRelevant = acc.IsRelevant
                     };
@@ -209,7 +214,11 @@ namespace Klanik_Internal.Tools
 
                 result.ProfessionalReferences.Add(current);
             }
-
+            foreach (var mob in source.Mobilites)
+            {
+                var current = new MobilityKonsultantVm { name = $"{mob.BU.Name}", id = mob.BusinessUnitId };
+                result.Mobilites.Add(current);
+            }
             return result;
         }
 
@@ -232,7 +241,6 @@ namespace Klanik_Internal.Tools
 
             return result;
         }
-
 
 
         #region internals
@@ -302,7 +310,7 @@ namespace Klanik_Internal.Tools
                 {
                     IsRelevant = tech.IsRelevant,
                     Name = tech.Name,
-                }:
+                } :
                 _techService.GetById(Guid.Parse(tech.Id));
 
             if (tech.IsDeleted)
@@ -311,14 +319,14 @@ namespace Klanik_Internal.Tools
             }
             else
             {
-              
+
                 existing.IsRelevant = tech.IsRelevant;
                 existing.Name = tech.Name;
 
                 if (string.IsNullOrEmpty(tech.Id))
                 {
                     current.TechnicalEnvironments.Add(existing);
-                }                    
+                }
             }
         }
 
@@ -339,7 +347,7 @@ namespace Klanik_Internal.Tools
             }
             else
             {
-                
+
                 existing.IsRelevant = acc.IsRelevant;
                 existing.Title = acc.Title;
 
@@ -472,17 +480,11 @@ namespace Klanik_Internal.Tools
 
     }
 
-
-
-
-    public interface IMapper
-    {
+    public interface IMapper {
         Konsultant toKonsultant(KonsultantCreationModel toCreate);
 
         KonsultantCreationModel toViewModel(Konsultant source);
 
         Konsultant ToPdfModel(Konsultant source);
     }
-
-
 }

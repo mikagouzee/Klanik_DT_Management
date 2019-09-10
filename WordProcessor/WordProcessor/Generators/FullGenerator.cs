@@ -2375,7 +2375,7 @@ namespace WordProcessor.Generators {
 
             runProperties178.Append(languages169);
             Text text132 = new Text() { Space = SpaceProcessingModeValues.Preserve };
-            text132.Text = $" {_Konsultant.Availability.ToShortDateString()}";
+            text132.Text = $" {_Konsultant.Availability.ToString("MM-yyyy")}";
 
             run184.Append(runProperties178);
             run184.Append(text132);

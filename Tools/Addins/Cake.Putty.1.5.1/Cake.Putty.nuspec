@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Cake.Putty</id>
+    <version>1.5.1</version>
+    <authors>Miha Markic</authors>
+    <owners>Miha Markic</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/MihaMarkic/Cake.Putty/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/MihaMarkic/Cake.Putty</projectUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</iconUrl>
+    <description>Cake Build addin for Putty.</description>
+    <releaseNotes>See https://github.com/MihaMarkic/Cake.Putty/blob/master/ReleaseNotes.md</releaseNotes>
+    <tags>cake putty cake-build cake-contrib</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+</package>

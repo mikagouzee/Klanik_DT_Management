@@ -58,7 +58,7 @@ namespace IdentityServer.Extensions {
             services.AddTransient<IStarter, Starter>();
 
             services.AddTransient<ILogMachine, LogMachine>();
-
+            services.AddTransient<UserManager<IdentityUser>>();
             services.Configure<AuthMessageSenderOptions>(Configuration.GetSection("AuthMessageSenderOptions"));
             services.Configure<FrontConfig>(Configuration.GetSection("FrontConfig"));
 

@@ -9,14 +9,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Klanik_Internal.Extensions
-{
-    public static class ServiceExtensions
-    {
+namespace Klanik_Internal.Extensions {
+    public static class ServiceExtensions {
         public static void ConfigureCors(this IServiceCollection services)
         {
             services.AddCors(options =>
@@ -63,7 +58,8 @@ namespace Klanik_Internal.Extensions
             services.AddScoped<IService<Konsultant>, KonsultantService>();
             services.AddScoped<IService<Recruiter>, RecruiterService>();
             services.AddScoped<IRepository<Konsultant>, KonsultantRepository>();
-
+            services.AddScoped<IRepository<BusinessUnit>, BuRepository>();
+            services.AddScoped<IRepository<Contry>, CountryRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IService<Certificate>, CertificateService>();
             services.AddScoped<IService<Language>, LanguageService>();
@@ -73,8 +69,9 @@ namespace Klanik_Internal.Extensions
             services.AddScoped<IService<ProfessionalExperience>, ProfessionalExperienceService>();
             services.AddScoped<IService<ProfessionalReference>, ProfessionalReferenceService>();
             services.AddScoped<IService<Accomplishment>, AccomplishmentService>();
-            services.AddScoped<IService<Models.Contact>, ContactService>();
-
+            services.AddScoped<IService<Contact>, ContactService>();
+            services.AddScoped<IService<BusinessUnit>, BuService>();
+            services.AddScoped<IService<Contry>, CountryService>();
             services.AddScoped<ILogMachine, LogMachine>();
 
             services.AddTransient<IGenerator, TemplateGenerator>();

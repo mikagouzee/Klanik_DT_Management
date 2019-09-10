@@ -27,7 +27,17 @@ namespace Klanik_Internal.Controllers {
 
             return Ok(allConsultant);
         }
+        //[Authorize]
+        //[HttpGet("paginate/{paginationParams}")]
+        //public IActionResult GetAllSortedPaged([FromBody]PaginationParams paginationParams)
+        //{
+        //    var pagedSortedKonsultant = _service.GetAll()
+        //        .Skip(paginationParams.perPage * paginationParams.page)
+        //        .Take(paginationParams.perPage);
 
+        //    return Ok(pagedSortedKonsultant);
+
+        //}
         [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
@@ -63,15 +73,18 @@ namespace Klanik_Internal.Controllers {
             var toC = _mapper.toKonsultant(konsultant);
 
             _service.Update(toC);
-
+            //should return ToC.
             return Ok(toC.Id);
         }
 
         [Authorize(Roles = "Admin, SuperUser")]
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            _service.Delete(_service.GetById(id));
+            var toDelete = _service.GetById(id);
+            if (toDelete is null)
+                return NotFound();
+            _service.Delete(toDelete);
             return Ok();
         }
         [HttpGet("Word/{id}")]
@@ -80,6 +93,30 @@ namespace Klanik_Internal.Controllers {
             WordProcessor.Exposed exposed = new WordProcessor.Exposed();
             var doc = exposed.ExposeToApi(id);
             return File(doc.ToArray(), "application/vnd.openxmlformats-officedocument.wordprocessingml.document", $"{id}DT.docx");
+        }
+
+        [HttpPost("OptOut/{id}")]
+        public IActionResult OptOut(Guid id)
+        {
+            if (id == null)
+                return BadRequest();
+            Konsultant Opter = _service.GetById(id);
+            if (Opter is null)
+                return NotFound();
+            try
+            {
+                _service.Delete(Opter);
+
+                //We need to go and delete the User in IdentityServer as well.
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return Ok();
+
         }
     }
 }

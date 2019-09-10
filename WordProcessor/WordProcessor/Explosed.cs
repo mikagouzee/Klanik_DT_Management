@@ -30,7 +30,7 @@ namespace WordProcessor {
             }
             catch (Exception ex)
             {
-                throw ex.InnerException;
+                throw;
             }
             return ms;
         }

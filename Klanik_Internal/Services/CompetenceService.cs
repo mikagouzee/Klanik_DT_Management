@@ -26,7 +26,7 @@ namespace Klanik_Internal.Services {
         #region unnecessary
         public void Create(Competence toCreate)
         {
-            throw new NotImplementedException();
+            _repo.Create(toCreate);
         }
 
 

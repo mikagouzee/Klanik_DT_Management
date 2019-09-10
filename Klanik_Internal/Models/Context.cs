@@ -1,12 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Klanik_Internal.Models
-{
-    public class KlanikContext : DbContext
-    {
+namespace Klanik_Internal.Models {
+    public class KlanikContext : DbContext {
         public KlanikContext(DbContextOptions<KlanikContext> options) : base(options)
         {
 
@@ -23,6 +19,9 @@ namespace Klanik_Internal.Models
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Language> Languages { get; set; }
 
+        public DbSet<Contry> Countries { get; set; }
+        public DbSet<BusinessUnit> businessUnits { get; set; }
+        public DbSet<MobilityKonsultant> Mobilites { get; set; }
         public DbSet<OwnedCompetences> OwnedCompetences { get; set; }
         public DbSet<PersonalEducation> PersonalEducations { get; set; }
         public DbSet<OwnedCertificate> OwnedCertificates { get; set; }
@@ -54,12 +53,16 @@ namespace Klanik_Internal.Models
                     l => new { l.KonsultantId, l.LanguageId }
                 );
 
-            modelBuilder.Entity<OwnedCertificate>().HasKey(
-                    c => new { c.CertificateId, c.KonsultantId}
-                );
 
+            modelBuilder.Entity<OwnedCertificate>().HasKey(
+                    c => new { c.CertificateId, c.KonsultantId }
+                );
+            modelBuilder.Entity<MobilityKonsultant>().HasKey(
+                m => new { m.KonsultantId, m.BusinessUnitId }
+                );
+            modelBuilder.Entity<MobilityKonsultant>().HasIndex(idx => new { idx.KonsultantId, idx.BusinessUnitId }).IsUnique(true);
             modelBuilder.Entity<PersonalEducation>().HasKey(
-                    p => new { p.EducationId, p.KonsultantId}
+                    p => new { p.EducationId, p.KonsultantId }
                 );
 
             modelBuilder.Entity<OwnedCompetences>().HasKey(

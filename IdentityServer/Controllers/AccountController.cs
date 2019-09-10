@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -203,7 +205,12 @@ namespace IdentityServer.Controllers {
         [HttpGet("users")]
         public IActionResult GetAllUsers()
         {
-            var res = _userRepository.GetAllUsers();
+            List<ProfileViewModel> res = _userRepository.GetAllUsers().ToList();
+            foreach (ProfileViewModel Pvm in res)
+            {
+                Pvm.Roles.AddRange(_userManager.GetRolesAsync(Pvm.AppUser).Result);
+                Pvm.AppUser = null;
+            }
             return Ok(res);
         }
 
@@ -233,6 +240,20 @@ namespace IdentityServer.Controllers {
         public IActionResult GetRecruteur(Guid id)
         {
             return Ok(_userRepository.GetOne(id));
+        }
+
+        [HttpDelete("{id}")]
+        public void Delete(Guid id)
+        {
+            try
+            {
+                _userRepository.Delete(id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

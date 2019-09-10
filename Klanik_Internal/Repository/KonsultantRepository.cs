@@ -82,6 +82,9 @@ namespace Klanik_Internal.Repository {
                     .Include(k => k.ProfessionalReferences)
                         .ThenInclude(p => p.Contacts)
                     .Include(k => k.Recruiter)
+                    .Include(k => k.Mobilites)
+                        .ThenInclude(ctn => ctn.BU)
+                            .ThenInclude(bu => bu.Contry)
                     .FirstOrDefault(x => x.Id == id);
             }
         }
@@ -98,8 +101,14 @@ namespace Klanik_Internal.Repository {
             using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 KlanikContext _context = _provider.GetService<KlanikContext>();
-                _context.Entry(toEdit).State = EntityState.Modified;
 
+                _context.Entry(toEdit).State = EntityState.Modified;
+                //_context.Entry(toEdit.Mobilites).State = EntityState.Modified;
+
+                foreach (var item in toEdit.Mobilites)
+                {
+                    CreateOrUpdateMobility(_context, item);
+                }
                 foreach (var comp in toEdit.Competences)
                 {
                     CreateOrUpdateCompetence(_context, comp);
@@ -132,6 +141,13 @@ namespace Klanik_Internal.Repository {
 
                 _context.SaveChanges();
             }
+        }
+
+        private void CreateOrUpdateMobility(KlanikContext context, MobilityKonsultant item)
+        {
+            var exist = context.Mobilites.Any(x => x.KonsultantId == item.KonsultantId && x.BusinessUnitId == item.BusinessUnitId);
+            context.Entry(item).State = exist ? EntityState.Modified : EntityState.Added;
+            //context.Add(item);
         }
 
         private static void CreateOrUpdateProfessionalReference(KlanikContext _context, ProfessionalReference refer)

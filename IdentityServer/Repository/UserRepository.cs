@@ -47,6 +47,26 @@ namespace IdentityServer.Repository {
 
             }
         }
+        public void Delete(Guid id)
+        {
+            using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                KlanikIdentityContext context = _provider.GetService<KlanikIdentityContext>();
+
+                try
+                {
+                    context.Users.Remove(context.Users.Find(id.ToString()));
+                    context.SaveChanges();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+
+        }
     }
 
     public interface IUserRepository {
@@ -54,6 +74,7 @@ namespace IdentityServer.Repository {
 
         IEnumerable<string> GetAllRoles();
         ProfileViewModel GetOne(Guid id);
+        void Delete(Guid id);
     }
 
 }

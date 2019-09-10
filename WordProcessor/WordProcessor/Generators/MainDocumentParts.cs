@@ -1,15 +1,19 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
+using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using static WordProcessor.Model.ModelEnums;
 using A = DocumentFormat.OpenXml.Drawing;
 using A14 = DocumentFormat.OpenXml.Office2010.Drawing;
 using Pic = DocumentFormat.OpenXml.Drawing.Pictures;
 using Wp = DocumentFormat.OpenXml.Drawing.Wordprocessing;
 using Wp14 = DocumentFormat.OpenXml.Office2010.Word.Drawing;
-
 namespace WordProcessor.Generators {
     public static class MainDocumentParts {
         public static void GenerateMainDocumentPart1Content(MainDocumentPart mainDocumentPart1, Konsultant _Konsultant)
@@ -1373,7 +1377,7 @@ namespace WordProcessor.Generators {
                 runProperties99.Append(fontSize102);
                 runProperties99.Append(fontSizeComplexScript98);
                 Text text62 = new Text();
-                text62.Text = $"{edu.StartDate.ToShortDateString()} - {edu.EndDate.ToShortDateString()} : {edu.Education.Name}";
+                text62.Text = $"{edu.StartDate.ToString("MM-yyyy")} - {edu.EndDate.ToString("MM-yyyy")} : {edu.Education.Name}";
 
                 run99.Append(runProperties99);
                 run99.Append(text62);
@@ -2316,7 +2320,7 @@ namespace WordProcessor.Generators {
                 runProperties115.Append(fontSizeComplexScript120);
                 runProperties115.Append(languages94);
                 Text text76 = new Text();
-                text76.Text = $"{Exp.StartDate.ToShortDateString() }till";
+                text76.Text = $"{Exp.StartDate.ToString("MM-yyyy") } till";
 
                 run116.Append(runProperties115);
                 run116.Append(text76);
@@ -2352,7 +2356,7 @@ namespace WordProcessor.Generators {
                 runProperties117.Append(fontSizeComplexScript122);
                 runProperties117.Append(languages96);
                 Text text78 = new Text();
-                text78.Text = $"{Exp.EndDate.ToShortDateString()}";
+                text78.Text = $" {Exp.EndDate.ToString("MM-yyyy")}";
 
                 run118.Append(runProperties117);
                 run118.Append(text78);
@@ -3032,7 +3036,7 @@ namespace WordProcessor.Generators {
                 runProperties123.Append(fontSize145);
                 runProperties123.Append(fontSizeComplexScript139);
                 Text text84 = new Text();
-                text84.Text = $"From {Exp.StartDate.ToShortDateString()} till {Exp.EndDate.ToShortDateString()}";
+                text84.Text = $"From {Exp.StartDate.ToString("MM-yyyy")} till {Exp.EndDate.ToString("MM-yyyy")}";
 
                 run125.Append(runProperties123);
                 run125.Append(text84);
@@ -3402,7 +3406,7 @@ namespace WordProcessor.Generators {
                 runProperties141.Append(fontSizeComplexScript164);
                 runProperties141.Append(languages126);
                 Text text102 = new Text();
-                text102.Text = $"{Exp.Summary}";
+                text102.Text = $"{RemoveUnwantedTags(Exp.Summary)}";
 
                 run143.Append(runProperties141);
                 run143.Append(text102);
@@ -3526,66 +3530,76 @@ namespace WordProcessor.Generators {
                 paragraph78.Append(run144);
                 paragraph78.Append(run145);
                 Paragraph paragraph79 = new Paragraph() { RsidParagraphMarkRevision = "006A08FF", RsidParagraphAddition = "006051D6", RsidParagraphProperties = "006051D6", RsidRunAdditionDefault = "006051D6" };
+                NumberingProperties numberingPropertiesAcc = new NumberingProperties();
+                NumberingLevelReference numberingLevelReferenceAcc = new NumberingLevelReference() { Val = 1 };
+                NumberingId numberingAccId = new NumberingId() { Val = 50 };
 
+                numberingPropertiesAcc.Append(numberingLevelReferenceAcc);
+                numberingPropertiesAcc.Append(numberingAccId);
+                ParagraphProperties paragraphProperties75 = new ParagraphProperties();
+                paragraphProperties75.Append(numberingPropertiesAcc);
                 //Loop here on Accomplishments.
-                foreach (var achievments in Exp.Accomplishment)
-                {
+                //foreach (var achievments in Exp.Accomplishment)
+                //{
+                //    body1.Append(GenerateParagraph(achievments.Title));
 
-                    ParagraphProperties paragraphProperties75 = new ParagraphProperties();
 
-                    Tabs tabs31 = new Tabs();
-                    TabStop tabStop38 = new TabStop() { Val = TabStopValues.Left, Position = 1985 };
+                //Tabs tabs31 = new Tabs();
+                //TabStop tabStop38 = new TabStop() { Val = TabStopValues.Left, Position = 1985 };
 
-                    tabs31.Append(tabStop38);
-                    Indentation indentation14 = new Indentation() { Start = "710", Hanging = "2" };
-                    Justification justification19 = new Justification() { Val = JustificationValues.Both };
+                //tabs31.Append(tabStop38);
+                //Indentation indentation14 = new Indentation() { Start = "710", Hanging = "2" };
+                //Justification justification19 = new Justification() { Val = JustificationValues.Both };
 
-                    ParagraphMarkRunProperties paragraphMarkRunProperties71 = new ParagraphMarkRunProperties();
-                    RunFonts runFonts169 = new RunFonts() { Ascii = "Arial", HighAnsi = "Arial", EastAsia = "Times New Roman", ComplexScript = "Arial" };
-                    BoldComplexScript boldComplexScript9 = new BoldComplexScript();
-                    ItalicComplexScript italicComplexScript7 = new ItalicComplexScript();
-                    FontSize fontSize171 = new FontSize() { Val = "20" };
-                    FontSizeComplexScript fontSizeComplexScript169 = new FontSizeComplexScript() { Val = "20" };
-                    Languages languages131 = new Languages() { EastAsia = "fr-FR" };
+                //ParagraphMarkRunProperties paragraphMarkRunProperties71 = new ParagraphMarkRunProperties();
+                //RunFonts runFonts169 = new RunFonts() { Ascii = "Arial", HighAnsi = "Arial", EastAsia = "Times New Roman", ComplexScript = "Arial" };
+                //BoldComplexScript boldComplexScript9 = new BoldComplexScript();
+                //ItalicComplexScript italicComplexScript7 = new ItalicComplexScript();
+                //FontSize fontSize171 = new FontSize() { Val = "20" };
+                //FontSizeComplexScript fontSizeComplexScript169 = new FontSizeComplexScript() { Val = "20" };
+                //Languages languages131 = new Languages() { EastAsia = "fr-FR" };
 
-                    paragraphMarkRunProperties71.Append(runFonts169);
-                    paragraphMarkRunProperties71.Append(boldComplexScript9);
-                    paragraphMarkRunProperties71.Append(italicComplexScript7);
-                    paragraphMarkRunProperties71.Append(fontSize171);
-                    paragraphMarkRunProperties71.Append(fontSizeComplexScript169);
-                    paragraphMarkRunProperties71.Append(languages131);
+                //paragraphMarkRunProperties71.Append(runFonts169);
+                //paragraphMarkRunProperties71.Append(boldComplexScript9);
+                //paragraphMarkRunProperties71.Append(italicComplexScript7);
+                //paragraphMarkRunProperties71.Append(fontSize171);
+                //paragraphMarkRunProperties71.Append(fontSizeComplexScript169);
+                //paragraphMarkRunProperties71.Append(languages131);
 
-                    paragraphProperties75.Append(tabs31);
-                    paragraphProperties75.Append(indentation14);
-                    paragraphProperties75.Append(justification19);
-                    paragraphProperties75.Append(paragraphMarkRunProperties71);
+                //paragraphProperties75.Append(tabs31);
+                //paragraphProperties75.Append(indentation14);
+                //paragraphProperties75.Append(justification19);
+                //paragraphProperties75.Append(paragraphMarkRunProperties71);
 
-                    Run run146 = new Run() { RsidRunProperties = "006A08FF" };
+                //Run run146 = new Run() { RsidRunProperties = "006A08FF" };
 
-                    RunProperties runProperties144 = new RunProperties();
-                    RunFonts runFonts170 = new RunFonts() { Ascii = "Arial", HighAnsi = "Arial", EastAsia = "Times New Roman", ComplexScript = "Arial" };
-                    BoldComplexScript boldComplexScript10 = new BoldComplexScript();
-                    ItalicComplexScript italicComplexScript8 = new ItalicComplexScript();
-                    FontSize fontSize172 = new FontSize() { Val = "20" };
-                    FontSizeComplexScript fontSizeComplexScript170 = new FontSizeComplexScript() { Val = "20" };
-                    Languages languages132 = new Languages() { EastAsia = "fr-FR" };
+                //RunProperties runProperties144 = new RunProperties();
+                //RunFonts runFonts170 = new RunFonts() { Ascii = "Arial", HighAnsi = "Arial", EastAsia = "Times New Roman", ComplexScript = "Arial" };
+                //BoldComplexScript boldComplexScript10 = new BoldComplexScript();
+                //ItalicComplexScript italicComplexScript8 = new ItalicComplexScript();
+                //FontSize fontSize172 = new FontSize() { Val = "20" };
+                //FontSizeComplexScript fontSizeComplexScript170 = new FontSizeComplexScript() { Val = "20" };
+                //Languages languages132 = new Languages() { EastAsia = "fr-FR" };
 
-                    runProperties144.Append(runFonts170);
-                    runProperties144.Append(boldComplexScript10);
-                    runProperties144.Append(italicComplexScript8);
-                    runProperties144.Append(fontSize172);
-                    runProperties144.Append(fontSizeComplexScript170);
-                    runProperties144.Append(languages132);
-                    Text text105 = new Text();
-                    text105.Text = $" {achievments.Title}";
+                //runProperties144.Append(runFonts170);
+                //runProperties144.Append(boldComplexScript10);
+                //runProperties144.Append(italicComplexScript8);
+                //runProperties144.Append(fontSize172);
+                //runProperties144.Append(fontSizeComplexScript170);
+                //runProperties144.Append(languages132);
 
-                    run146.Append(runProperties144);
-                    run146.Append(text105);
-                    run146.Append(new Break());
-                    paragraph79.Append(paragraphProperties75);
-                    paragraph79.Append(run146);
-                }
 
+                //Text text105 = new Text();
+
+                //// var x = opt.HtmlToWmlConverter.ConvertHtmlToWml(null, null, null, Xelemens, null);
+                //text105.Text = $" {(achievments.Title)}";
+
+                //run146.Append(runProperties144);
+                //run146.Append(text105);
+
+                //paragraph79.Append(run146);
+                //   }
+                // paragraph79.Append(paragraphProperties75);
                 Paragraph paragraph82 = new Paragraph() { RsidParagraphMarkRevision = "006A08FF", RsidParagraphAddition = "006051D6", RsidParagraphProperties = "006051D6", RsidRunAdditionDefault = "006051D6" };
 
                 ParagraphProperties paragraphProperties78 = new ParagraphProperties();
@@ -3841,7 +3855,18 @@ namespace WordProcessor.Generators {
                     runProperties154.Append(fontSizeComplexScript184);
                     runProperties154.Append(languages146);
                     Text text115 = new Text();
-                    text115.Text = $"{technical.Name}";
+
+
+                    //AlternativeFormatImportPart altformatImportPart = document.MainDocumentPart.AddAlternativeFormatImportPart(AlternativeFormatImportPartType.Html);
+
+                    ////Add the HTML data into the alternative format import part
+                    //altformatImportPart.FeedData(ms);
+
+                    ////create a new altChunk and link it to the id of the AlternativeFormatImportPart
+                    //AltChunk altChunk = new AltChunk();
+                    //altChunk.Id = document.MainDocumentPart.GetIdOfPart(altformatImportPart);
+
+                    text115.Text = $"{RemoveUnwantedTags(technical.Name)}";
 
                     run156.Append(runProperties154);
                     run156.Append(text115);
@@ -3863,13 +3888,21 @@ namespace WordProcessor.Generators {
                 if (Exp.Accomplishment.Any())
                 {
                     body1.Append(paragraph78);
-                    body1.Append(paragraph79);
+                    foreach (var achievments in Exp.Accomplishment)
+                    {
+                        body1.Append(GenerateParagraph(achievments.Title));
+                    }
+
+                    //body1.Append(paragraph79);
                 }
 
                 if (Exp.TechnicalEnvironment.Any())
                 {
                     body1.Append(paragraph82);
-                    body1.Append(paragraph83);
+                    foreach (var p in Exp.TechnicalEnvironment)
+                    {
+                        body1.Append(GenerateParagraph(p.Name));
+                    }
                 }
 
 
@@ -3886,5 +3919,266 @@ namespace WordProcessor.Generators {
 
             mainDocumentPart1.Document = document1;
         }
+
+        public static Paragraph GenerateParagraph(string bulletText)
+        {
+            var element =
+            new Paragraph(
+            new ParagraphProperties(
+            new ParagraphStyleId() { Val = "ListParagraph" },
+            new NumberingProperties(
+            new NumberingLevelReference() { Val = 0 },
+            new NumberingId() { Val = 2 })),
+            new Run(
+            new Text(bulletText)) //Text tou want to insert with bullet
+            )
+            { RsidParagraphAddition = "00031711", RsidParagraphProperties = "00031711", RsidRunAdditionDefault = "00031711" };
+            return element;
+        }
+        public static string Convert(string path)
+        {
+            HtmlDocument doc = new HtmlDocument();
+            doc.Load(path);
+            return ConvertDoc(doc);
+        }
+
+        public static string ConvertHtml(string html)
+        {
+            HtmlDocument doc = new HtmlDocument();
+            doc.LoadHtml(html);
+            return ConvertDoc(doc);
+        }
+
+        public static string ConvertDoc(HtmlDocument doc)
+        {
+            using (StringWriter sw = new StringWriter())
+            {
+                ConvertTo(doc.DocumentNode, sw);
+                sw.Flush();
+                return sw.ToString();
+            }
+        }
+        public static XElement HtmlToXElement(string html)
+        {
+            if (html == null)
+                throw new ArgumentNullException("html");
+
+            HtmlDocument doc = new HtmlDocument();
+            doc.OptionOutputAsXml = true;
+            doc.LoadHtml(html);
+            using (StringWriter writer = new StringWriter())
+            {
+                doc.Save(writer);
+                using (StringReader reader = new StringReader(writer.ToString()))
+                {
+                    return XElement.Load(reader);
+                }
+            }
+        }
+        internal static void ConvertContentTo(HtmlNode node, TextWriter outText, PreceedingDomTextInfo textInfo)
+        {
+            foreach (HtmlNode subnode in node.ChildNodes)
+            {
+                ConvertTo(subnode, outText, textInfo);
+            }
+        }
+        public static void ConvertTo(HtmlNode node, TextWriter outText)
+        {
+            ConvertTo(node, outText, new PreceedingDomTextInfo(false));
+        }
+        internal static void ConvertTo(HtmlNode node, TextWriter outText, PreceedingDomTextInfo textInfo)
+        {
+            string html;
+            switch (node.NodeType)
+            {
+                case HtmlNodeType.Comment:
+                    // don't output comments
+                    break;
+                case HtmlNodeType.Document:
+                    ConvertContentTo(node, outText, textInfo);
+                    break;
+                case HtmlNodeType.Text:
+                    // script and style must not be output
+                    string parentName = node.ParentNode.Name;
+                    if ((parentName == "script") || (parentName == "style"))
+                    {
+                        break;
+                    }
+                    // get text
+                    html = ((HtmlTextNode)node).Text;
+                    // is it in fact a special closing node output as text?
+                    if (HtmlNode.IsOverlappedClosingElement(html))
+                    {
+                        break;
+                    }
+                    // check the text is meaningful and not a bunch of whitespaces
+                    if (html.Length == 0)
+                    {
+                        break;
+                    }
+                    if (!textInfo.WritePrecedingWhiteSpace || textInfo.LastCharWasSpace)
+                    {
+                        html = html.TrimStart();
+                        if (html.Length == 0) { break; }
+                        textInfo.IsFirstTextOfDocWritten.Value = textInfo.WritePrecedingWhiteSpace = true;
+                    }
+                    outText.Write(HtmlEntity.DeEntitize(Regex.Replace(html.TrimEnd(), @"\s{2,}", " ")));
+                    if (textInfo.LastCharWasSpace = char.IsWhiteSpace(html[html.Length - 1]))
+                    {
+                        outText.Write(' ');
+                    }
+                    break;
+                case HtmlNodeType.Element:
+                    string endElementString = null;
+                    bool isInline;
+                    bool skip = false;
+                    int listIndex = 0;
+                    switch (node.Name)
+                    {
+                        case "nav":
+                            skip = true;
+                            isInline = false;
+                            break;
+                        case "body":
+                        case "section":
+                        case "article":
+                        case "aside":
+                        case "h1":
+                        case "h2":
+                        case "header":
+                        case "footer":
+                        case "address":
+                        case "main":
+                        case "div":
+                        case "p": // stylistic - adjust as you tend to use
+                            if (textInfo.IsFirstTextOfDocWritten)
+                            {
+                                outText.Write("\r\n");
+                            }
+                            endElementString = Environment.NewLine;//"\r\n";
+                            isInline = false;
+                            break;
+                        case "br":
+                            outText.Write("\r\n");
+                            skip = true;
+                            textInfo.WritePrecedingWhiteSpace = false;
+                            isInline = true;
+                            break;
+                        case "a":
+                            if (node.Attributes.Contains("href"))
+                            {
+                                string href = node.Attributes["href"].Value.Trim();
+                                if (node.InnerText.IndexOf(href, StringComparison.InvariantCultureIgnoreCase) == -1)
+                                {
+                                    endElementString = "<" + href + ">";
+                                }
+                            }
+                            isInline = true;
+                            break;
+                        case "li":
+                            if (textInfo.ListIndex > 0)
+                            {
+                                outText.Write("\r\n{0}.\t", textInfo.ListIndex++);
+                            }
+                            else
+                            {
+                                outText.Write("\r\n*\t"); //using '*' as bullet char, with tab after, but whatever you want eg "\t->", if utf-8 0x2022
+                            }
+                            isInline = false;
+                            break;
+                        case "ol":
+                            listIndex = 1;
+                            goto case "ul";
+                        case "ul": //not handling nested lists any differently at this stage - that is getting close to rendering problems
+                            endElementString = "\r\n";
+                            isInline = false;
+                            break;
+                        case "img": //inline-block in reality
+                            if (node.Attributes.Contains("alt"))
+                            {
+                                outText.Write('[' + node.Attributes["alt"].Value);
+                                endElementString = "]";
+                            }
+                            if (node.Attributes.Contains("src"))
+                            {
+                                outText.Write('<' + node.Attributes["src"].Value + '>');
+                            }
+                            isInline = true;
+                            break;
+                        default:
+                            isInline = true;
+                            break;
+                    }
+                    if (!skip && node.HasChildNodes)
+                    {
+                        ConvertContentTo(node, outText, isInline ? textInfo : new PreceedingDomTextInfo(textInfo.IsFirstTextOfDocWritten) { ListIndex = listIndex });
+                    }
+                    if (endElementString != null)
+                    {
+                        outText.Write(endElementString);
+                    }
+                    break;
+            }
+        }
+        internal static string RemoveUnwantedTags(string data)
+        {
+            if (string.IsNullOrEmpty(data)) return string.Empty;
+
+            var document = new HtmlDocument();
+            document.LoadHtml(data);
+
+            var acceptableTags = new String[] { "ul", "li", "ol", "strong", "em", "u" };
+
+            var nodes = new Queue<HtmlNode>(document.DocumentNode.SelectNodes("./*|./text()"));
+            while (nodes.Count > 0)
+            {
+                var node = nodes.Dequeue();
+                var parentNode = node.ParentNode;
+
+                if (!acceptableTags.Contains(node.Name) && node.Name != "#text")
+                {
+                    var childNodes = node.SelectNodes("./*|./text()");
+
+                    if (childNodes != null)
+                    {
+                        foreach (var child in childNodes)
+                        {
+                            nodes.Enqueue(child);
+                            parentNode.InsertBefore(child, node);
+                        }
+                    }
+
+                    parentNode.RemoveChild(node);
+
+                }
+            }
+
+            return document.DocumentNode.InnerHtml;
+        }
     }
+    internal class PreceedingDomTextInfo {
+        public PreceedingDomTextInfo(BoolWrapper isFirstTextOfDocWritten)
+        {
+            IsFirstTextOfDocWritten = isFirstTextOfDocWritten;
+        }
+        public bool WritePrecedingWhiteSpace { get; set; }
+        public bool LastCharWasSpace { get; set; }
+        public readonly BoolWrapper IsFirstTextOfDocWritten;
+        public int ListIndex { get; set; }
+    }
+    internal class BoolWrapper {
+        public BoolWrapper() { }
+        public bool Value { get; set; }
+        public static implicit operator bool(BoolWrapper boolWrapper)
+        {
+            return boolWrapper.Value;
+        }
+        public static implicit operator BoolWrapper(bool boolWrapper)
+        {
+            return new BoolWrapper { Value = boolWrapper };
+        }
+    }
+
+
 }
+
