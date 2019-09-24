@@ -2,13 +2,9 @@
 using Klanik_Internal.Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Klanik_Internal.Services
-{
-    public class CertificateService : IService<Certificate>
-    {
+namespace Klanik_Internal.Services {
+    public class CertificateService : IService<Certificate> {
         private readonly IRepository<Certificate> _repo;
 
         public CertificateService(IRepository<Certificate> repo)
@@ -27,6 +23,7 @@ namespace Klanik_Internal.Services
         }
 
         #region unnecessary
+#warning SOLID Violation : Interface segragation.
         public void Create(Certificate toCreate)
         {
             throw new NotImplementedException();
@@ -44,6 +41,6 @@ namespace Klanik_Internal.Services
         }
         #endregion
 
-       
+
     }
 }

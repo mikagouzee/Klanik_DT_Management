@@ -7,17 +7,15 @@ using System.Linq;
 using System.Linq.Expressions;
 
 namespace Klanik_Internal.Repository {
-    public class KonsultantRepository : IRepository<Konsultant> {
-        private readonly IServiceProvider _provider;
+    public class KonsultantRepository : Repository<Konsultant> {
         private readonly IList<Expression<Func<Konsultant, object>>> _modifiers;
 
-        public KonsultantRepository(IServiceProvider provider)
+        public KonsultantRepository(IServiceProvider provider) : base(provider)
         {
-            _provider = provider;
             _modifiers = new List<Expression<Func<Konsultant, object>>>();
         }
 
-        public void Create(Konsultant toCreate)
+        public override void Create(Konsultant toCreate)
         {
             using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
@@ -38,72 +36,71 @@ namespace Klanik_Internal.Repository {
             }
         }
 
-        public void Delete(Konsultant toRemove)
-        {
-            using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                KlanikContext _context = _provider.GetService<KlanikContext>();
+        //public void Delete(Konsultant toRemove)
+        //{
+        //    using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+        //    {
+        //        KlanikContext _context = _provider.GetService<KlanikContext>();
 
-                _context.Entry(toRemove).State = EntityState.Deleted;
-                _context.SaveChanges();
-            }
-        }
+        //        _context.Entry(toRemove).State = EntityState.Deleted;
+        //        _context.SaveChanges();
+        //    }
+        //}
 
-        public IEnumerable<Konsultant> GetAll()
-        {
-            using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                KlanikContext _context = _provider.GetService<KlanikContext>();
+        //public IEnumerable<Konsultant> GetAll()
+        //{
+        //    using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+        //    {
+        //        KlanikContext _context = _provider.GetService<KlanikContext>();
 
-                return _context.Konsultants
-                    .ToList();
-            }
-        }
+        //        return _context.Konsultants
+        //            .ToList();
+        //    }
+        //}
 
-        public Konsultant GetById(Guid id)
-        {
-            using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                KlanikContext _context = _provider.GetService<KlanikContext>();
+        //public Konsultant GetById(Guid id)
+        //{
+        //    using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+        //    {
+        //        KlanikContext _context = _provider.GetService<KlanikContext>();
 
-                return _context.Konsultants
-                    .Include(k => k.Languages)
-                        .ThenInclude(l => l.Language)
-                    .Include(k => k.Competences)
-                        .ThenInclude(c => c.Competence)
-                    .Include(k => k.Educations)
-                        .ThenInclude(e => e.Education)
-                    .Include(k => k.Certificates)
-                        .ThenInclude(c => c.Certificate)
-                    .Include(k => k.ProfessionalExperiences)
-                        .ThenInclude(p => p.Accomplishments)
-                    .Include(k => k.ProfessionalExperiences)
-                        .ThenInclude(p => p.TechnicalEnvironments)
-                    .Include(k => k.ProfessionalReferences)
-                        .ThenInclude(p => p.Contacts)
-                    .Include(k => k.Recruiter)
-                    .Include(k => k.Mobilites)
-                        .ThenInclude(ctn => ctn.BU)
-                            .ThenInclude(bu => bu.Contry)
-                    .FirstOrDefault(x => x.Id == id);
-            }
-        }
+        //        return _context.Konsultants
+        //            .Include(k => k.Languages)
+        //                .ThenInclude(l => l.Language)
+        //            .Include(k => k.Competences)
+        //                .ThenInclude(c => c.Competence)
+        //            .Include(k => k.Educations)
+        //                .ThenInclude(e => e.Education)
+        //            .Include(k => k.Certificates)
+        //                .ThenInclude(c => c.Certificate)
+        //            .Include(k => k.ProfessionalExperiences)
+        //                .ThenInclude(p => p.Accomplishments)
+        //            .Include(k => k.ProfessionalExperiences)
+        //                .ThenInclude(p => p.TechnicalEnvironments)
+        //            .Include(k => k.ProfessionalReferences)
+        //                .ThenInclude(p => p.Contacts)
+        //            .Include(k => k.Recruiter)
+        //            .Include(k => k.Mobilites)
+        //                .ThenInclude(ctn => ctn.BU)
+        //                    .ThenInclude(bu => bu.Contry)
+        //            .FirstOrDefault(x => x.Id == id);
+        //    }
+        //}
 
-        public IRepository<Konsultant> Include(Expression<Func<Konsultant, object>> path)
-        {
-            _modifiers.Add(path);
+        //public IRepository<Konsultant> Include(Expression<Func<Konsultant, object>> path)
+        //{
+        //    _modifiers.Add(path);
 
-            return this;
-        }
+        //    return this;
+        //}
 
-        public void Update(Konsultant toEdit)
+        public override void Update(Konsultant toEdit)
         {
             using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 KlanikContext _context = _provider.GetService<KlanikContext>();
 
                 _context.Entry(toEdit).State = EntityState.Modified;
-                //_context.Entry(toEdit.Mobilites).State = EntityState.Modified;
 
                 foreach (var item in toEdit.Mobilites)
                 {

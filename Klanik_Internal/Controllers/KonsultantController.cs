@@ -13,6 +13,7 @@ namespace Klanik_Internal.Controllers {
         private readonly IService<Konsultant> _service;
         private readonly IMapper _mapper;
 
+
         public KonsultantController(IService<Konsultant> service, IMapper mapper)
         {
             _service = service;
@@ -27,17 +28,7 @@ namespace Klanik_Internal.Controllers {
 
             return Ok(allConsultant);
         }
-        //[Authorize]
-        //[HttpGet("paginate/{paginationParams}")]
-        //public IActionResult GetAllSortedPaged([FromBody]PaginationParams paginationParams)
-        //{
-        //    var pagedSortedKonsultant = _service.GetAll()
-        //        .Skip(paginationParams.perPage * paginationParams.page)
-        //        .Take(paginationParams.perPage);
 
-        //    return Ok(pagedSortedKonsultant);
-
-        //}
         [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)

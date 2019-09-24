@@ -52,14 +52,15 @@ namespace Klanik_Internal.Extensions {
             services.Configure<PdfConfig>(Configuration.GetSection("PdfConfig"));
             services.Configure<CORS>(Configuration.GetSection("Cors"));
             services.Configure<JwtBearerConfig>(Configuration.GetSection("JwtBearer"));
-
+            //Caching
+            services.AddMemoryCache();
             services.AddScoped<IServiceProvider, ServiceProvider>();
             services.AddScoped<IMapper, Mapper>();
             services.AddScoped<IService<Konsultant>, KonsultantService>();
             services.AddScoped<IService<Recruiter>, RecruiterService>();
-            services.AddScoped<IRepository<Konsultant>, KonsultantRepository>();
-            services.AddScoped<IRepository<BusinessUnit>, BuRepository>();
-            services.AddScoped<IRepository<Contry>, CountryRepository>();
+            //services.AddScoped<IRepository<Konsultant>, KonsultantRepository>();
+            //services.AddScoped<IRepository<BusinessUnit>, BuRepository>();
+            //services.AddScoped<IRepository<Contry>, CountryRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IService<Certificate>, CertificateService>();
             services.AddScoped<IService<Language>, LanguageService>();
