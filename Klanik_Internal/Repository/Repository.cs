@@ -95,18 +95,12 @@ namespace Klanik_Internal.Repository {
         {
             using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                KlanikContext _context = _provider.GetService<KlanikContext>();
-                var query = _context.Set<T>().Include(_context.GetIncludePaths(typeof(T)));
+                KlanikContext context = _provider.GetService<KlanikContext>();
+                var query = context.Set<T>().Include(context.GetIncludePaths(typeof(T)));
                 return query.FirstOrDefault(c => c.Id == id);
             }
         }
 
-        /// <summary>
-        /// Usage : "_repo.Include(x => x.MyRequestedProperty).GetById(id)"
-        /// or "_repo.Include(x => x.myRequestedProperty).Get(x => x.Id== id)"
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
         public IRepository<T> Include(Expression<Func<T, object>> path)
         {
             _modifiers.Add(path);

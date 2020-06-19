@@ -3,10 +3,6 @@ using Klanik_Internal.Filters;
 using Klanik_Internal.LogMachines;
 using Klanik_Internal.Models;
 using Klanik_Internal.Models.ConfigValues;
-using Klanik_Internal.Repository;
-using Klanik_Internal.Services;
-using Klanik_Internal.Tools;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -19,28 +15,26 @@ using Microsoft.IdentityModel.Logging;
 using Swashbuckle.AspNetCore.Filters;
 //Swagger
 using Swashbuckle.AspNetCore.Swagger;
-using System;
 
 
 namespace Klanik_Internal {
     public class Startup {
-
-        private IHostingEnvironment _hostingEnvironment;
+        public readonly IHostingEnvironment HostingEnvironment;
         private ILogMachine _logMachine;
 
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
-            _hostingEnvironment = env;
+            HostingEnvironment = env;
             Configuration = configuration;
             _logMachine = new LogMachine();
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+
         public void ConfigureServices(IServiceCollection services)
         {
-            var physicalProvider = _hostingEnvironment.ContentRootFileProvider;
+            var physicalProvider = HostingEnvironment.ContentRootFileProvider;
             services.AddSingleton(physicalProvider);
 
             services.Configure<PdfConfig>(Configuration.GetSection("PdfConfig"));
@@ -53,7 +47,7 @@ namespace Klanik_Internal {
 
             services.AddNodeServices();
 
-            services.ConfigureIISIntegration();
+            services.ConfigureIisIntegration();
 
             services.AddDbContext<KlanikContext>(opts =>
                 opts.UseSqlServer(Configuration["ConnectionString:KlanikDb"])
@@ -88,8 +82,7 @@ namespace Klanik_Internal {
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -97,11 +90,10 @@ namespace Klanik_Internal {
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                 app.UseHsts();
             }
 
-            IdentityModelEventSource.ShowPII = true; //Add this line
+            IdentityModelEventSource.ShowPII = true; 
             
             app.UseCors("CorsPolicy");
 

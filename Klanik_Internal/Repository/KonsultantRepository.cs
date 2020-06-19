@@ -17,11 +17,11 @@ namespace Klanik_Internal.Repository {
 
         public override void Create(Konsultant toCreate)
         {
-            using (IServiceScope scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            using (var scope = _provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                KlanikContext _context = _provider.GetService<KlanikContext>();
+                KlanikContext context = _provider.GetService<KlanikContext>();
 
-                var exists = _context.Konsultants.Any(x => x.Id == toCreate.Id);
+                var exists = context.Konsultants.Any(x => x.Id == toCreate.Id);
 
                 if (exists)
                 {
@@ -29,10 +29,10 @@ namespace Klanik_Internal.Repository {
                 }
                 else
                 {
-                    _context.Add(toCreate);
+                    context.Add(toCreate);
                 }
 
-                _context.SaveChanges();
+                context.SaveChanges();
             }
         }
 
